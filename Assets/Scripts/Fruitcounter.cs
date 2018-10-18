@@ -10,34 +10,38 @@ public class Fruitcounter : MonoBehaviour
     public int greennum;
     public int violetnum;
     public List<GameObject> opencard;
-    public int p1r;
-    public int p1y;
-    public int p1g;
-    public int p1v;
-    public int p2r;
-    public int p2y;
-    public int p2g;
-    public int p2v;
-    public int p3r;
-    public int p3y;
-    public int p3g;
-    public int p3v;
-    public int p4r;
-    public int p4y;
-    public int p4g;
-    public int p4v;
+    public List<int> rnum;
+    public List<int> ynum;
+    public List<int> gnum;
+    public List<int> vnum;
+    public List<List<int>> num;
 
     void Start () 
 	{
-		
-	}
+        rnum = new List<int>();
+        ynum = new List<int>();
+        gnum = new List<int>();
+        vnum = new List<int>();
+        for (int i = 0; i < 4; i++)
+        {
+            rnum.Add(0);
+            ynum.Add(0);
+            gnum.Add(0);
+            vnum.Add(0);
+        }        
+        num = new List<List<int>>();
+        num.Add(rnum);
+        num.Add(ynum);
+        num.Add(gnum);
+        num.Add(vnum);
+    }
 	
 	void Update () 
-	{
-        rednum = p1r + p2r + p3r + p4r;
-        yellownum = p1y + p2y + p3y + p4y;
-        greennum = p1g + p2g + p3g + p4g;
-        violetnum = p1v + p2v + p3v + p4v;
+	{        
+        rednum = rnum[0] + rnum[1] + rnum[2] + rnum[3];
+        yellownum = ynum[0] + ynum[1] + ynum[2] + ynum[3];
+        greennum = gnum[0] + gnum[1] + gnum[2] + gnum[3];
+        violetnum = vnum[0] + vnum[1] + vnum[2] + vnum[3];
         if (rednum==5|| yellownum == 5 || greennum == 5 || violetnum == 5)
         {
             canwin = true;
@@ -46,5 +50,5 @@ public class Fruitcounter : MonoBehaviour
         {
             canwin = false;
         }
-	}
+	}    
 }

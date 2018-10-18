@@ -5,15 +5,18 @@ using UnityEngine;
 public class Reversecard : MonoBehaviour 
 {
     public bool check=false;
-    public GameObject counter;    
+    public GameObject counter;
+    public int cardnum;
+    public Fruitcounter card;
 
 	void Start () 
 	{
-		
-	}
+        card = counter.GetComponent<Fruitcounter>();
+    }
 	
 	void Update () 
-	{        
+	{
+        cardnum= GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
         if (check == true&&GetComponent<Yourturn>().turn==true)
         {
             if (GetComponent<Havecard>().remaincard.Count == 0)
@@ -25,140 +28,16 @@ public class Reversecard : MonoBehaviour
             switch (gameObject.name)
             {
                 case "1P":
-                    GetComponent<Havecard>().remaincard[0].transform.localPosition = new Vector3(0, 1.5f, 0);
-                    GetComponent<Havecard>().remaincard[0].transform.Rotate(180, 0, 0);
-                    GetComponent<Havecard>().remaincard[0].transform.parent = counter.transform;
-                    counter.GetComponent<Fruitcounter>().opencard.Add(GetComponent<Havecard>().remaincard[0]);
-                    switch (GetComponent<Havecard>().remaincard[0].tag)
-                    {
-                        case "red":
-                            counter.GetComponent<Fruitcounter>().p1r = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p1y = 0;
-                            counter.GetComponent<Fruitcounter>().p1g = 0;
-                            counter.GetComponent<Fruitcounter>().p1v = 0;
-                            break;
-                        case "yellow":
-                            counter.GetComponent<Fruitcounter>().p1r = 0;
-                            counter.GetComponent<Fruitcounter>().p1y = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p1g = 0;
-                            counter.GetComponent<Fruitcounter>().p1v = 0;
-                            break;
-                        case "green":
-                            counter.GetComponent<Fruitcounter>().p1r = 0;
-                            counter.GetComponent<Fruitcounter>().p1y = 0;
-                            counter.GetComponent<Fruitcounter>().p1g = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p1v = 0;
-                            break;
-                        case "violet":
-                            counter.GetComponent<Fruitcounter>().p1r = 0;
-                            counter.GetComponent<Fruitcounter>().p1y = 0;
-                            counter.GetComponent<Fruitcounter>().p1g = 0;
-                            counter.GetComponent<Fruitcounter>().p1v = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            break;
-                    }
-                    GetComponent<Havecard>().remaincard.RemoveAt(0);
+                    Change(0);
                     break;
                 case "2P":
-                    GetComponent<Havecard>().remaincard[0].transform.localPosition = new Vector3(0, 1.5f, 0);
-                    GetComponent<Havecard>().remaincard[0].transform.Rotate(180, 0, 0);
-                    GetComponent<Havecard>().remaincard[0].transform.parent = counter.transform;
-                    counter.GetComponent<Fruitcounter>().opencard.Add(GetComponent<Havecard>().remaincard[0]);
-                    switch (GetComponent<Havecard>().remaincard[0].tag)
-                    {
-                        case "red":
-                            counter.GetComponent<Fruitcounter>().p2r = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p2y = 0;
-                            counter.GetComponent<Fruitcounter>().p2g = 0;
-                            counter.GetComponent<Fruitcounter>().p2v = 0;
-                            break;
-                        case "yellow":
-                            counter.GetComponent<Fruitcounter>().p2r = 0;
-                            counter.GetComponent<Fruitcounter>().p2y = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p2g = 0;
-                            counter.GetComponent<Fruitcounter>().p2v = 0;
-                            break;
-                        case "green":
-                            counter.GetComponent<Fruitcounter>().p2r = 0;
-                            counter.GetComponent<Fruitcounter>().p2y = 0;
-                            counter.GetComponent<Fruitcounter>().p2g = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p2v = 0;
-                            break;
-                        case "violet":
-                            counter.GetComponent<Fruitcounter>().p2r = 0;
-                            counter.GetComponent<Fruitcounter>().p2y = 0;
-                            counter.GetComponent<Fruitcounter>().p2g = 0;
-                            counter.GetComponent<Fruitcounter>().p2v = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            break;
-                    }
-                    GetComponent<Havecard>().remaincard.RemoveAt(0);
+                    Change(1);
                     break;
                 case "3P":
-                    GetComponent<Havecard>().remaincard[0].transform.localPosition = new Vector3(0, 1.5f, 0);
-                    GetComponent<Havecard>().remaincard[0].transform.Rotate(180, 0, 0);
-                    GetComponent<Havecard>().remaincard[0].transform.parent = counter.transform;
-                    counter.GetComponent<Fruitcounter>().opencard.Add(GetComponent<Havecard>().remaincard[0]);
-                    switch (GetComponent<Havecard>().remaincard[0].tag)
-                    {
-                        case "red":
-                            counter.GetComponent<Fruitcounter>().p3r = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p3y = 0;
-                            counter.GetComponent<Fruitcounter>().p3g = 0;
-                            counter.GetComponent<Fruitcounter>().p3v = 0;
-                            break;
-                        case "yellow":
-                            counter.GetComponent<Fruitcounter>().p3r = 0;
-                            counter.GetComponent<Fruitcounter>().p3y = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p3g = 0;
-                            counter.GetComponent<Fruitcounter>().p3v = 0;
-                            break;
-                        case "green":
-                            counter.GetComponent<Fruitcounter>().p3r = 0;
-                            counter.GetComponent<Fruitcounter>().p3y = 0;
-                            counter.GetComponent<Fruitcounter>().p3g = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p3v = 0;
-                            break;
-                        case "violet":
-                            counter.GetComponent<Fruitcounter>().p3r = 0;
-                            counter.GetComponent<Fruitcounter>().p3y = 0;
-                            counter.GetComponent<Fruitcounter>().p3g = 0;
-                            counter.GetComponent<Fruitcounter>().p3v = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            break;
-                    }
-                    GetComponent<Havecard>().remaincard.RemoveAt(0);
+                    Change(2);
                     break;
                 case "4P":
-                    GetComponent<Havecard>().remaincard[0].transform.localPosition = new Vector3(0, 1.5f, 0);
-                    GetComponent<Havecard>().remaincard[0].transform.Rotate(180, 0, 0);
-                    GetComponent<Havecard>().remaincard[0].transform.parent = counter.transform;
-                    counter.GetComponent<Fruitcounter>().opencard.Add(GetComponent<Havecard>().remaincard[0]);
-                    switch (GetComponent<Havecard>().remaincard[0].tag)
-                    {
-                        case "red":
-                            counter.GetComponent<Fruitcounter>().p4r = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p4y = 0;
-                            counter.GetComponent<Fruitcounter>().p4g = 0;
-                            counter.GetComponent<Fruitcounter>().p4v = 0;
-                            break;
-                        case "yellow":
-                            counter.GetComponent<Fruitcounter>().p4r = 0;
-                            counter.GetComponent<Fruitcounter>().p4y = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p4g = 0;
-                            counter.GetComponent<Fruitcounter>().p4v = 0;
-                            break;
-                        case "green":
-                            counter.GetComponent<Fruitcounter>().p4r = 0;
-                            counter.GetComponent<Fruitcounter>().p4y = 0;
-                            counter.GetComponent<Fruitcounter>().p4g = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            counter.GetComponent<Fruitcounter>().p4v = 0;
-                            break;
-                        case "violet":
-                            counter.GetComponent<Fruitcounter>().p4r = 0;
-                            counter.GetComponent<Fruitcounter>().p4y = 0;
-                            counter.GetComponent<Fruitcounter>().p4g = 0;
-                            counter.GetComponent<Fruitcounter>().p4v = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-                            break;
-                    }
-                    GetComponent<Havecard>().remaincard.RemoveAt(0);
+                    Change(3);
                     break;
             }
             check = false;
@@ -170,6 +49,90 @@ public class Reversecard : MonoBehaviour
         }
 	}
 
+    
+    void Change(int j)
+    {        
+        switch (GetComponent<Havecard>().remaincard[0].tag)
+        {
+            case "red":
+                Changered(j);
+                break;
+            case "yellow":
+                Changeyellow(j);
+                break;
+            case "green":
+                Changegreen(j);
+                break;
+            case "violet":
+                Changeviolet(j);
+                break;
+        }
+        Movecard();
+        GetComponent<Havecard>().remaincard.RemoveAt(0);        
+    }
+    void Changered(int j)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (i == 0)
+            {
+                card.num[i][j] = cardnum;
+            }
+            else
+            {
+                card.num[i][j] = 0;
+            }
+        }
+    }
+    void Changeyellow(int j)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (i == 1)
+            {
+                card.num[i][j] = cardnum;
+            }
+            else
+            {
+                card.num[i][j] = 0;
+            }
+        }
+    }
+    void Changegreen(int j)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (i == 2)
+            {
+                card.num[i][j] = cardnum;
+            }
+            else
+            {
+                card.num[i][j] = 0;
+            }
+        }
+    }
+    void Changeviolet(int j)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (i == 3)
+            {
+                card.num[i][j] = cardnum;
+            }
+            else
+            {
+                card.num[i][j] = 0;
+            }
+        }
+    }
+    void Movecard()
+    {
+        GetComponent<Havecard>().remaincard[0].transform.localPosition = new Vector3(0, 1.5f, 0);
+        GetComponent<Havecard>().remaincard[0].transform.Rotate(180, 0, 0);
+        GetComponent<Havecard>().remaincard[0].transform.parent = counter.transform;
+        counter.GetComponent<Fruitcounter>().opencard.Add(GetComponent<Havecard>().remaincard[0]);
+    }
     public void Pushbtn()
     {
         check = true;

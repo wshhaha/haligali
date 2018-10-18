@@ -30,6 +30,13 @@ public class Ringbell : MonoBehaviour
                 item.transform.localRotation = Quaternion.Euler(0, 0, 0);                
             }
             counter.GetComponent<Fruitcounter>().opencard.Clear();
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    counter.GetComponent<Fruitcounter>().num[i][j] = 0;
+                }   
+            }
         }
         else
         {
