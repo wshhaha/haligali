@@ -16,8 +16,11 @@ public class Reversecard : MonoBehaviour
 	
 	void Update () 
 	{
-        cardnum= GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
-        if (check == true&&GetComponent<Yourturn>().turn==true)
+        if (GetComponent<Havecard>().remaincard.Count != 0)
+        {
+            cardnum = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
+        }
+        if (check == true&&GetComponent<Yourturn>().turn==true&&card.endround==false)
         {
             if (GetComponent<Havecard>().remaincard.Count == 0)
             {
@@ -47,76 +50,18 @@ public class Reversecard : MonoBehaviour
         {
             check = false;
         }
-	}
-
-    
+	}    
     void Change(int j)
-    {        
-        switch (GetComponent<Havecard>().remaincard[0].tag)
-        {
-            case "red":
-                Changered(j);
-                break;
-            case "yellow":
-                Changeyellow(j);
-                break;
-            case "green":
-                Changegreen(j);
-                break;
-            case "violet":
-                Changeviolet(j);
-                break;
-        }
+    {
+        Changecolor(j);
         Movecard();
         GetComponent<Havecard>().remaincard.RemoveAt(0);        
     }
-    void Changered(int j)
+    void Changecolor(int j)
     {
         for (int i = 0; i < 4; i++)
         {
-            if (i == 0)
-            {
-                card.num[i][j] = cardnum;
-            }
-            else
-            {
-                card.num[i][j] = 0;
-            }
-        }
-    }
-    void Changeyellow(int j)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            if (i == 1)
-            {
-                card.num[i][j] = cardnum;
-            }
-            else
-            {
-                card.num[i][j] = 0;
-            }
-        }
-    }
-    void Changegreen(int j)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            if (i == 2)
-            {
-                card.num[i][j] = cardnum;
-            }
-            else
-            {
-                card.num[i][j] = 0;
-            }
-        }
-    }
-    void Changeviolet(int j)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            if (i == 3)
+            if (i == j)
             {
                 card.num[i][j] = cardnum;
             }
@@ -128,7 +73,7 @@ public class Reversecard : MonoBehaviour
     }
     void Movecard()
     {
-        GetComponent<Havecard>().remaincard[0].transform.localPosition = new Vector3(0, 1.5f, 0);
+        GetComponent<Havecard>().remaincard[0].transform.localPosition = new Vector3(0, 0.25f, 0);
         GetComponent<Havecard>().remaincard[0].transform.Rotate(180, 0, 0);
         GetComponent<Havecard>().remaincard[0].transform.parent = counter.transform;
         counter.GetComponent<Fruitcounter>().opencard.Add(GetComponent<Havecard>().remaincard[0]);

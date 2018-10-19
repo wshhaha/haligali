@@ -5,53 +5,79 @@ using UnityEngine;
 public class Builddeck : MonoBehaviour 
 {
     public GameObject card;
-    public int redlmt;
-    public int yellowlmt;
-    public int greenlmt;
-    public int violetlmt;    
-    int ronef;
-    int rtwof;
-    int rthreef;
-    int rfourf;
-    int rfivef;
-    int yonef;
-    int ytwof;
-    int ythreef;
-    int yfourf;
-    int yfivef;
-    int gonef;
-    int gtwof;
-    int gthreef;
-    int gfourf;
-    int gfivef;
-    int vonef;
-    int vtwof;
-    int vthreef;
-    int vfourf;
-    int vfivef;
-    int rj;
-    int yj;
-    int gj;
-    int vj;
+    public List<int> rnum;
+    public List<int> ynum;
+    public List<int> gnum;
+    public List<int> vnum;
+    public List<List<int>> num;
     public GameObject p1;    
     public GameObject p2;
     public GameObject p3;
     public GameObject p4;
-    int p1num;
-    int p2num;
-    int p3num;
-    int p4num;
-
+    public List<GameObject> p;    
+    public List<int> pnum;
+    public List<string> cc;
+    public List<int> limits;
+    
     void Start () 
 	{
-        Suffledeck();
-	}
-	void Suffledeck()
+        Colornumreset();
+        Playerreset();
+        CardColor();
+        Createdeck();        
+    }
+    void CardColor()
+    {
+        cc = new List<string>();
+        cc.Add("red");
+        cc.Add("yellow");
+        cc.Add("green");
+        cc.Add("violet");
+        limits = new List<int>();
+        for (int i = 0; i < 4; i++)
+        {
+            limits.Add(0);
+        }
+    }
+    void Playerreset()
+    {
+        p = new List<GameObject>();
+        p.Add(p1);
+        p.Add(p2);
+        p.Add(p3);
+        p.Add(p4);
+        pnum = new List<int>();
+        for (int i = 0; i < 4; i++)
+        {
+            pnum.Add(0);            
+        }
+    }
+    void Colornumreset()
+    {
+        rnum = new List<int>();
+        ynum = new List<int>();
+        gnum = new List<int>();
+        vnum = new List<int>();
+        for (int i = 0; i < 6; i++)
+        {
+            rnum.Add(0);
+            ynum.Add(0);
+            gnum.Add(0);
+            vnum.Add(0);
+        }
+        num = new List<List<int>>();
+        num.Add(rnum);
+        num.Add(ynum);
+        num.Add(gnum);
+        num.Add(vnum);
+    }
+	void Createdeck()
     {
         for (int i = 0; i < 60; i++)
         {
             GameObject deck = Instantiate(card);
             deck.transform.parent = transform;
+            deck.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f);
             Selectfruit(deck);
             Givenum(deck);
             Seperatecard(deck);
@@ -64,419 +90,148 @@ public class Builddeck : MonoBehaviour
         switch (who)
         {
             case 0:
-                if (p1num >14)
+                Createcard(obj1, who);
+                break;
+            case 1:
+                Createcard(obj1, who);
+                break;
+            case 2:
+                Createcard(obj1, who);
+                break;
+            case 3:
+                Createcard(obj1, who);
+                break;
+        }
+    }
+    void Createcard(GameObject card, int pn)
+    {
+        if (pnum[pn] > 14)
+        {
+            Seperatecard(card);
+        }
+        else
+        {
+            card.transform.parent = p[pn].transform;
+            card.transform.localPosition = Vector3.zero;
+            p[pn].GetComponent<Havecard>().remaincard.Add(card);
+            pnum[pn]++;
+            if (pn == 1)
+            {
+                card.transform.Rotate(0, 0, -90);
+            }
+            if (pn == 3)
+            {
+                card.transform.Rotate(0, 0, 90);
+            }
+        }
+    }
+    void Givecolor(GameObject obj, int color)
+    {
+        if (limits[color] >= 15)
+        {
+            Selectfruit(obj);
+        }
+        else
+        {
+            obj.transform.tag = cc[color];
+            limits[color]++;
+        }        
+    }
+    void Rannum(GameObject obj,int color, int number)
+    {
+        switch (number)
+        {
+            case 0:
+                if (num[color][number] >= 5)
                 {
-                    Seperatecard(obj1);
+                    Givenum(obj);
                 }
                 else
                 {
-                    obj1.transform.parent = p1.transform;
-                    obj1.transform.localPosition = Vector3.zero;
-                    p1.GetComponent<Havecard>().remaincard.Add(obj1);
-                    p1num++;
+                    obj.GetComponent<Cardstat>().numfruit = (number+1);
+                    num[color][number]++;
                 }
                 break;
             case 1:
-                if (p2num >14)
+                if (num[color][number] >= 3)
                 {
-                    Seperatecard(obj1);
+                    Givenum(obj);
                 }
                 else
                 {
-                    obj1.transform.parent = p2.transform;
-                    obj1.transform.localPosition = Vector3.zero;
-                    p2.GetComponent<Havecard>().remaincard.Add(obj1);
-                    obj1.transform.Rotate(0, 0, -90);
-                    p2num++;
+                    obj.GetComponent<Cardstat>().numfruit = (number + 1);
+                    num[color][number]++;
                 }
                 break;
             case 2:
-                if (p3num >14)
+                if (num[color][number] >= 3)
                 {
-                    Seperatecard(obj1);
+                    Givenum(obj);
                 }
                 else
                 {
-                    obj1.transform.parent = p3.transform;
-                    obj1.transform.localPosition = Vector3.zero;
-                    p3.GetComponent<Havecard>().remaincard.Add(obj1);
-                    p3num++;
+                    obj.GetComponent<Cardstat>().numfruit = (number + 1);
+                    num[color][number]++;
                 }
                 break;
             case 3:
-                if (p4num >14)
+                if (num[color][number] >= 2)
                 {
-                    Seperatecard(obj1);
+                    Givenum(obj);
                 }
                 else
                 {
-                    obj1.transform.parent = p4.transform;
-                    obj1.transform.localPosition = Vector3.zero;
-                    p4.GetComponent<Havecard>().remaincard.Add(obj1);
-                    obj1.transform.Rotate(0, 0, 90);
-                    p4num++;
+                    obj.GetComponent<Cardstat>().numfruit = (number + 1);
+                    num[color][number]++;
+                }
+                break;
+            case 4:
+                if (num[color][number] >= 1)
+                {
+                    Givenum(obj);
+                }
+                else
+                {
+                    obj.GetComponent<Cardstat>().numfruit = (number + 1);
+                    num[color][number]++;
+                }
+                break;
+            case 5:
+                if (num[color][number] >= 1)
+                {
+                    Givenum(obj);
+                }
+                else
+                {
+                    obj.GetComponent<Cardstat>().numfruit = (number + 1);
+                    num[color][number]++;
                 }
                 break;
         }
     }
-    void Givered(GameObject obj)
-    {
-        obj.transform.tag = "red";
-        redlmt++;        
-    }
-    void Giveyellow(GameObject obj)
-    {
-        obj.transform.tag = "yellow";
-        yellowlmt++;
-    }
-    void Givegreen(GameObject obj)
-    {
-        obj.transform.tag = "green";
-        greenlmt++;
-    }
-    void Giveviolet(GameObject obj)
-    {
-        obj.transform.tag = "violet";
-        violetlmt++;
-    }
-    
     void Givenum(GameObject obj)
     {
-        int num = Random.Range(1, 7);        
+        int num = Random.Range(0, 6);
+        
         switch (obj.transform.tag)
         {
             case "red":
-                switch (num)
-                {
-                    case 1:
-                        if (ronef >= 5)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            ronef++;
-                        }
-                        break;
-                    case 2:
-                        if (rtwof >= 3)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            rtwof++;
-                        }
-                        break;
-                    case 3:
-                        if (rthreef >= 3)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            rthreef++;
-                        }
-                        break;
-                    case 4:
-                        if (rfourf >= 2)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            rfourf++;
-                        }
-                        break;
-                    case 5:
-                        if (rfivef >= 1)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            rfivef++;
-                        }
-                        break;
-                    case 6:
-                        if (rj >= 1)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            rj++;
-                        }
-                        break;
-                }
+                Rannum(obj, 0, num);
                 break;
             case "yellow":
-                switch (num)
-                {
-                    case 1:
-                        if (yonef >= 5)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            yonef++;
-                        }
-                        break;
-                    case 2:
-                        if (ytwof >= 3)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            ytwof++;
-                        }
-                        break;
-                    case 3:
-                        if (ythreef >= 3)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            ythreef++;
-                        }
-                        break;
-                    case 4:
-                        if (yfourf >= 2)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            yfourf++;
-                        }
-                        break;
-                    case 5:
-                        if (yfivef >= 1)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            yfivef++;
-                        }
-                        break;
-                    case 6:
-                        if (yj >= 1)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            yj++;
-                        }
-                        break;
-                }
+                Rannum(obj, 1, num);
                 break;
             case "green":
-                switch (num)
-                {
-                    case 1:
-                        if (gonef >= 5)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            gonef++;
-                        }
-                        break;
-                    case 2:
-                        if (gtwof >= 3)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            gtwof++;
-                        }
-                        break;
-                    case 3:
-                        if (gthreef >= 3)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            gthreef++;
-                        }
-                        break;
-                    case 4:
-                        if (gfourf >= 2)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            gfourf++;
-                        }
-                        break;
-                    case 5:
-                        if (gfivef >= 1)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            gfivef++;
-                        }
-                        break;
-                    case 6:
-                        if (gj >= 1)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            gj++;
-                        }
-                        break;
-                }
+                Rannum(obj, 2, num);
                 break;
             case "violet":
-                switch (num)
-                {
-                    case 1:
-                        if (vonef >= 5)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            vonef++;
-                        }
-                        break;
-                    case 2:
-                        if (vtwof >= 3)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            vtwof++;
-                        }
-                        break;
-                    case 3:
-                        if (vthreef >= 3)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            vthreef++;
-                        }
-                        break;
-                    case 4:
-                        if (vfourf >= 2)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            vfourf++;
-                        }
-                        break;
-                    case 5:
-                        if (vfivef >= 1)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            vfivef++;
-                        }
-                        break;
-                    case 6:
-                        if (vj >= 1)
-                        {
-                            Givenum(obj);
-                        }
-                        else
-                        {
-                            obj.GetComponent<Cardstat>().numfruit = num;
-                            vj++;
-                        }
-                        break;
-                }
+                Rannum(obj, 3, num);
                 break;
         }
     }
-
     void Selectfruit(GameObject obj)
     {
         int num = Random.Range(0, 4);
-        switch (num)
-        {
-            case 0:
-                if (redlmt >= 15)
-                {
-                    Selectfruit(obj);
-                }
-                else
-                {
-                    Givered(obj);
-                }
-                break;
-            case 1:
-                if (yellowlmt >= 15)
-                {
-                    Selectfruit(obj);
-                }
-                else
-                {
-                    Giveyellow(obj);
-                }
-                break;
-            case 2:
-                if (greenlmt >= 15)
-                {
-                    Selectfruit(obj);
-                }
-                else
-                {
-                    Givegreen(obj);
-                }
-                break;
-            case 3:
-                if (violetlmt >= 15)
-                {
-                    Selectfruit(obj);
-                }
-                else
-                {
-                    Giveviolet(obj);
-                }
-                break;
-        }
+        Givecolor(obj, num);
     }
 }
