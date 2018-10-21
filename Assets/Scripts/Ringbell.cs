@@ -74,7 +74,7 @@ public class Ringbell : MonoBehaviour
         if (counter.GetComponent<Fruitcounter>().canwin == true)
         {
             counter.GetComponent<Fruitcounter>().endround = true;
-            winner.text = gameObject.name + "\nWIN";
+            winner.text = "ROUND\nWINNER\n" + gameObject.name;
             switch (gameObject.name)
             {
                 case "1P":

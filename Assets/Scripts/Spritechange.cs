@@ -13,10 +13,6 @@ public class Spritechange : MonoBehaviour
         if (transform.parent.transform.parent.name== "Fruitcounter")
         {
             GetComponent<UISprite>().spriteName = transform.parent.name;
-        }
-        else
-        {
-            GetComponent<UISprite>().spriteName = "back";
-        }
+        }        
     }
 }

@@ -17,6 +17,7 @@ public class Fruitcounter : MonoBehaviour
     public List<int> vnum;
     public List<List<int>> num;
     public GameObject next;
+    public GameObject Build;
 
     void Start () 
 	{
@@ -59,6 +60,19 @@ public class Fruitcounter : MonoBehaviour
         else
         {
             canwin = false;
+        }
+        if (opencard.Count == 60 && canwin == false)
+        {            
+            for (int i = 0; i < 4; i++)
+            {
+                Build.GetComponent<Builddeck>().pnum[i] = 0;
+            }
+            foreach (var item in opencard)
+            {
+                item.transform.rotation = Quaternion.Euler(0, 0, 0);
+                Build.GetComponent<Builddeck>().Seperatecard(item);
+            }            
+            opencard.Clear();
         }
 	}   
     

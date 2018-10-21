@@ -50,7 +50,22 @@ public class Reversecard : MonoBehaviour
         {
             check = false;
         }
-	}    
+        Remainone();
+    }    
+    void Remainone()
+    {
+        if (GetComponent<Havecard>().remaincard.Count == 1)
+        {
+            GetComponent<Havecard>().remaincard[0].GetComponentInChildren<UISprite>().spriteName = "back1";
+        }
+        else
+        {
+            foreach (var item in GetComponent<Havecard>().remaincard)
+            {
+                item.GetComponentInChildren<UISprite>().spriteName = "back";
+            }            
+        }
+    }
     void Change(int j)
     {
         Changecolor(j);

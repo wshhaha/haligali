@@ -71,7 +71,7 @@ public class Builddeck : MonoBehaviour
         num.Add(gnum);
         num.Add(vnum);
     }
-	void Createdeck()
+ 	void Createdeck()
     {
         for (int i = 0; i < 60; i++)
         {
@@ -84,7 +84,7 @@ public class Builddeck : MonoBehaviour
             deck.name = deck.tag + deck.GetComponent<Cardstat>().numfruit;
         }
     }
-    void Seperatecard(GameObject obj1)
+    public void Seperatecard(GameObject obj1)
     {
         int who = Random.Range(0, 4);
         switch (who)
@@ -103,7 +103,7 @@ public class Builddeck : MonoBehaviour
                 break;
         }
     }
-    void Createcard(GameObject card, int pn)
+    public void Createcard(GameObject card, int pn)
     {
         if (pnum[pn] > 14)
         {
@@ -118,6 +118,10 @@ public class Builddeck : MonoBehaviour
             if (pn == 1)
             {
                 card.transform.Rotate(0, 0, -90);
+            }
+            if (pn == 2)
+            {
+                card.transform.Rotate(0, 0, -180);
             }
             if (pn == 3)
             {
