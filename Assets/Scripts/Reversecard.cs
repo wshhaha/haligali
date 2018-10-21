@@ -57,11 +57,11 @@ public class Reversecard : MonoBehaviour
         Movecard();
         GetComponent<Havecard>().remaincard.RemoveAt(0);        
     }
-    void Changecolor(int j)
+    void Replacenum(int num,int j)
     {
         for (int i = 0; i < 4; i++)
         {
-            if (i == j)
+            if (i == num)
             {
                 card.num[i][j] = cardnum;
             }
@@ -71,8 +71,27 @@ public class Reversecard : MonoBehaviour
             }
         }
     }
-    void Movecard()
+    void Changecolor(int j)
     {
+        switch (GetComponent<Havecard>().remaincard[0].tag)
+        {
+            case "red":
+                Replacenum(0, j);
+                break;
+            case "yellow":
+                Replacenum(1, j);
+                break;
+            case "green":
+                Replacenum(2, j);
+                break;
+            case "violet":
+                Replacenum(3, j);
+                break;
+        }
+    }
+    void Movecard()
+    {        
+        GetComponent<Havecard>().remaincard[0].GetComponent<UIPanel>().depth = counter.GetComponent<Fruitcounter>().opencard.Count;
         GetComponent<Havecard>().remaincard[0].transform.localPosition = new Vector3(0, 0.25f, 0);
         GetComponent<Havecard>().remaincard[0].transform.Rotate(180, 0, 0);
         GetComponent<Havecard>().remaincard[0].transform.parent = counter.transform;

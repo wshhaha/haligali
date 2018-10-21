@@ -24,25 +24,32 @@ public class Yourturn : MonoBehaviour
         }
         if (turn == true && lose == true)
         {
-            switch (gameObject.name)
-            {
-                case "1P":
-                    GetComponent<Ringbell>().p2.GetComponent<Yourturn>().Turnon();
-                    break;
-                case "2P":
-                    GetComponent<Ringbell>().p3.GetComponent<Yourturn>().Turnon();
-                    break;
-                case "3P":
-                    GetComponent<Ringbell>().p4.GetComponent<Yourturn>().Turnon();
-                    break;
-                case "4P":
-                    GetComponent<Ringbell>().p1.GetComponent<Yourturn>().Turnon();
-                    break;
-            }
-            turn = false;
+            Skipturn();
+        }
+        if (GetComponent<Havecard>().remaincard.Count == 0)
+        {
+            Skipturn();
         }
 	}
-
+    void Skipturn()
+    {
+        switch (gameObject.name)
+        {
+            case "1P":
+                GetComponent<Ringbell>().p2.GetComponent<Yourturn>().Turnon();
+                break;
+            case "2P":
+                GetComponent<Ringbell>().p3.GetComponent<Yourturn>().Turnon();
+                break;
+            case "3P":
+                GetComponent<Ringbell>().p4.GetComponent<Yourturn>().Turnon();
+                break;
+            case "4P":
+                GetComponent<Ringbell>().p1.GetComponent<Yourturn>().Turnon();
+                break;
+        }
+        turn = false;
+    }
     public void Turnon()
     {        
         turn = true;

@@ -8,7 +8,7 @@ public class Cardstat : MonoBehaviour
 
 	void Start () 
 	{
-		
+        GetComponent<UIPanel>().depth = 0;
 	}
 	
 	void Update () 

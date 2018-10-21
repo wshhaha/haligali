@@ -49,10 +49,13 @@ public class Ringbell : MonoBehaviour
     }
     void Giveother(int num)
     {
-        GetComponent<Havecard>().remaincard[num].transform.parent = p[(num + 1)].transform;
-        GetComponent<Havecard>().remaincard[num].transform.localPosition = Vector3.zero;
-        GetComponent<Havecard>().remaincard[num].transform.localRotation = Quaternion.Euler(0, 0, 0);
-        p[(num + 1)].GetComponent<Havecard>().remaincard.Add(GetComponent<Havecard>().remaincard[num]);
+        if (p[(num + 1)].GetComponent<Yourturn>().lose == false)
+        {
+            GetComponent<Havecard>().remaincard[num].transform.parent = p[(num + 1)].transform;
+            GetComponent<Havecard>().remaincard[num].transform.localPosition = Vector3.zero;
+            GetComponent<Havecard>().remaincard[num].transform.localRotation = Quaternion.Euler(0, 0, 0);
+            p[(num + 1)].GetComponent<Havecard>().remaincard.Add(GetComponent<Havecard>().remaincard[num]);
+        }
     }
     void Penelity(int num, int need)
     {        
@@ -90,6 +93,7 @@ public class Ringbell : MonoBehaviour
             foreach (var item in counter.GetComponent<Fruitcounter>().opencard)
             {
                 item.transform.parent = transform;
+                item.GetComponent<UIPanel>().depth = 0;
                 GetComponent<Havecard>().remaincard.Add(item);
                 item.transform.localPosition = Vector3.zero;
                 item.transform.localRotation = Quaternion.Euler(0, 0, 0);                

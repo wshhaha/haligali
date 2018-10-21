@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fruitcounter : MonoBehaviour 
 {
     public bool canwin=false;
-    public bool endround = false;
+    public bool endround = false;    
     public int rednum;
     public int yellownum;
     public int greennum;
