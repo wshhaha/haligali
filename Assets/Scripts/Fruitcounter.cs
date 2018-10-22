@@ -5,7 +5,9 @@ using UnityEngine;
 public class Fruitcounter : MonoBehaviour 
 {
     public bool canwin=false;
-    public bool endround = false;    
+    public bool endround = false;
+    public List<bool> endgame;
+    public bool endgame1;
     public int rednum;
     public int yellownum;
     public int greennum;
@@ -17,10 +19,15 @@ public class Fruitcounter : MonoBehaviour
     public List<int> vnum;
     public List<List<int>> num;
     public GameObject next;
+    public List<GameObject> victory;
     public GameObject Build;
 
     void Start () 
 	{
+        for (int i = 0; i < 4; i++)
+        {
+            endgame.Add(false);            
+        }
         rnum = new List<int>();
         ynum = new List<int>();
         gnum = new List<int>();
@@ -41,7 +48,24 @@ public class Fruitcounter : MonoBehaviour
 	
 	void Update () 
 	{
-        if (endround == true)
+        if (endgame1 == true)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (endgame[i] == true)
+                {
+                    victory[i].SetActive(true);
+                }                
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                victory[i].SetActive(false);
+            }
+        }
+        if (endround == true&&endgame1==false)
         {
             next.SetActive(true);
         }

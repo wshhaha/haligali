@@ -11,7 +11,7 @@ public class Ringbell : MonoBehaviour
     public GameObject p4;
     public List<GameObject> p;
     public int remain;
-    public UILabel winner;
+    public UILabel nextround;
 
     void Start()
     {
@@ -51,10 +51,11 @@ public class Ringbell : MonoBehaviour
     {
         if (p[(num + 1)].GetComponent<Yourturn>().lose == false)
         {
-            GetComponent<Havecard>().remaincard[num].transform.parent = p[(num + 1)].transform;
-            GetComponent<Havecard>().remaincard[num].transform.localPosition = Vector3.zero;
-            GetComponent<Havecard>().remaincard[num].transform.localRotation = Quaternion.Euler(0, 0, 0);
-            p[(num + 1)].GetComponent<Havecard>().remaincard.Add(GetComponent<Havecard>().remaincard[num]);
+            GetComponent<Havecard>().remaincard[0].transform.parent = p[(num + 1)].transform;
+            GetComponent<Havecard>().remaincard[0].transform.localPosition = Vector3.zero;
+            GetComponent<Havecard>().remaincard[0].transform.localRotation = Quaternion.Euler(0, 0, 0);
+            p[(num + 1)].GetComponent<Havecard>().remaincard.Add(GetComponent<Havecard>().remaincard[0]);
+            GetComponent<Havecard>().remaincard.Remove(GetComponent<Havecard>().remaincard[0]);
         }
     }
     void Penelity(int num, int need)
@@ -62,8 +63,7 @@ public class Ringbell : MonoBehaviour
         for (int i = 0; i < need; i++)
         {
             Giveother(i + num);
-        }        
-        GetComponent<Havecard>().remaincard.RemoveRange(0, need);
+        }                
     }
     public void Ring()
     {
@@ -72,9 +72,9 @@ public class Ringbell : MonoBehaviour
             return;
         }
         if (counter.GetComponent<Fruitcounter>().canwin == true)
-        {
+        {            
             counter.GetComponent<Fruitcounter>().endround = true;
-            winner.text = "ROUND\nWINNER\n" + gameObject.name;
+            nextround.text = "ROUND\nWINNER\n" + gameObject.name;
             switch (gameObject.name)
             {
                 case "1P":

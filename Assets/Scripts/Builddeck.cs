@@ -5,6 +5,7 @@ using UnityEngine;
 public class Builddeck : MonoBehaviour 
 {
     public GameObject card;
+    public List<GameObject> deck;
     public List<int> rnum;
     public List<int> ynum;
     public List<int> gnum;
@@ -18,13 +19,34 @@ public class Builddeck : MonoBehaviour
     public List<int> pnum;
     public List<string> cc;
     public List<int> limits;
-    
+    public int bestcollect;
+    public GameObject target;
+    public int who;
+
     void Start () 
-	{
+	{        
         Colornumreset();
         Playerreset();
         CardColor();
         Createdeck();        
+    }
+    public void Resetitem()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            p[i].GetComponent<Havecard>().useitem = false;
+        }
+    }
+    public void Lockon()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (p[i].GetComponent<Havecard>().remaincard.Count > 15)
+            {
+                bestcollect = p[i].GetComponent<Havecard>().remaincard.Count;
+                target = p[i];
+            }
+        }
     }
     void CardColor()
     {
@@ -82,11 +104,11 @@ public class Builddeck : MonoBehaviour
             Givenum(deck);
             Seperatecard(deck);
             deck.name = deck.tag + deck.GetComponent<Cardstat>().numfruit;
-        }
+        }        
     }
     public void Seperatecard(GameObject obj1)
     {
-        int who = Random.Range(0, 4);
+        who = Random.Range(0, 4);
         switch (who)
         {
             case 0:

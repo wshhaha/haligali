@@ -54,19 +54,6 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: 4885f48166eac7c41915a54c817c2dd1, type: 2}
   mSprites:
   - name: back
-    x: 0
-    y: 139
-    width: 250
-    height: 373
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: back1
     x: 252
     y: 139
     width: 250
@@ -79,60 +66,47 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: back1
+    x: 0
+    y: 139
+    width: 250
+    height: 373
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: bell
+    x: 102
+    y: 37
+    width: 100
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: Font
+    x: 504
+    y: 263
+    width: 128
+    height: 249
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 7
+    paddingBottom: 0
   - name: green1
-    x: 576
-    y: 106
-    width: 70
-    height: 100
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: green2
-    x: 576
-    y: 4
-    width: 70
-    height: 100
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: green3
-    x: 648
-    y: 412
-    width: 70
-    height: 100
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: green4
-    x: 576
-    y: 412
-    width: 70
-    height: 100
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: green5
-    x: 576
+    x: 778
     y: 310
     width: 70
     height: 100
@@ -144,9 +118,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: green6
-    x: 576
-    y: 208
+  - name: green2
+    x: 750
+    y: 106
     width: 70
     height: 100
     borderLeft: 0
@@ -157,8 +131,8 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: red1
-    x: 648
+  - name: green3
+    x: 750
     y: 4
     width: 70
     height: 100
@@ -170,8 +144,73 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: green4
+    x: 678
+    y: 4
+    width: 70
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: green5
+    x: 750
+    y: 208
+    width: 70
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: green6
+    x: 778
+    y: 412
+    width: 70
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: pause
+    x: 0
+    y: 37
+    width: 100
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: red1
+    x: 894
+    y: 208
+    width: 70
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: red2
-    x: 720
+    x: 922
     y: 412
     width: 70
     height: 100
@@ -184,20 +223,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: red3
-    x: 792
-    y: 412
-    width: 70
-    height: 100
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: red4
-    x: 648
+    x: 922
     y: 310
     width: 70
     height: 100
@@ -209,8 +235,8 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: red5
-    x: 648
+  - name: red4
+    x: 822
     y: 208
     width: 70
     height: 100
@@ -222,9 +248,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: red6
-    x: 648
-    y: 106
+  - name: red5
+    x: 850
+    y: 412
     width: 70
     height: 100
     borderLeft: 0
@@ -235,8 +261,47 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
+  - name: red6
+    x: 850
+    y: 310
+    width: 70
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: reverse
+    x: 504
+    y: 59
+    width: 100
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: stat
+    x: 504
+    y: 161
+    width: 100
+    height: 100
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: violet1
-    x: 216
+    x: 420
     y: 37
     width: 70
     height: 100
@@ -249,8 +314,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: violet2
-    x: 288
-    y: 37
+    x: 606
+    y: 161
     width: 70
     height: 100
     borderLeft: 0
@@ -262,7 +327,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: violet3
-    x: 360
+    x: 348
     y: 37
     width: 70
     height: 100
@@ -275,7 +340,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: violet4
-    x: 0
+    x: 204
     y: 37
     width: 70
     height: 100
@@ -288,7 +353,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: violet5
-    x: 72
+    x: 276
     y: 37
     width: 70
     height: 100
@@ -301,8 +366,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: violet6
-    x: 144
-    y: 37
+    x: 706
+    y: 412
     width: 70
     height: 100
     borderLeft: 0
@@ -314,8 +379,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: yellow1
-    x: 504
-    y: 208
+    x: 706
+    y: 310
     width: 70
     height: 100
     borderLeft: 0
@@ -327,7 +392,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: yellow2
-    x: 504
+    x: 678
     y: 106
     width: 70
     height: 100
@@ -340,8 +405,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: yellow3
-    x: 504
-    y: 4
+    x: 678
+    y: 208
     width: 70
     height: 100
     borderLeft: 0
@@ -353,8 +418,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: yellow4
-    x: 432
-    y: 37
+    x: 606
+    y: 59
     width: 70
     height: 100
     borderLeft: 0
@@ -366,7 +431,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: yellow5
-    x: 504
+    x: 634
     y: 412
     width: 70
     height: 100
@@ -379,7 +444,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: yellow6
-    x: 504
+    x: 634
     y: 310
     width: 70
     height: 100
