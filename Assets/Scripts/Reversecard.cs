@@ -16,11 +16,15 @@ public class Reversecard : MonoBehaviour
 	
 	void Update () 
 	{
+        Reversecardopen();
+    }    
+    public void Reversecardopen()
+    {
         if (GetComponent<Havecard>().remaincard.Count != 0)
         {
             cardnum = GetComponent<Havecard>().remaincard[0].GetComponent<Cardstat>().numfruit;
         }
-        if (check == true&&GetComponent<Yourturn>().turn==true&&card.endround==false)
+        if (check == true && GetComponent<Yourturn>().turn == true && card.endround == false)
         {
             if (GetComponent<Havecard>().remaincard.Count == 0)
             {
@@ -51,7 +55,7 @@ public class Reversecard : MonoBehaviour
             check = false;
         }
         Remainone();
-    }    
+    }
     void Remainone()
     {
         if (GetComponent<Havecard>().remaincard.Count == 1)

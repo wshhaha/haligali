@@ -19,7 +19,7 @@ public class Havecard : MonoBehaviour
 	
 	void Update () 
 	{
-        cardnum.text = +remaincard.Count+"장\n보유";
+        cardnum.text = "CARD\n" + remaincard.Count;
         if (remaincard.Count == 60)
         {
             victory.text = gameObject.name + "\nVICTORY";
@@ -33,9 +33,13 @@ public class Havecard : MonoBehaviour
 	}    
     public void Pillage()
     {
-        if (useitem == false)
+        if (useitem == false&&GetComponent<Yourturn>().turn==true)
         {
             build.GetComponent<Builddeck>().Lockon();
+            if (build.GetComponent<Builddeck>().target == gameObject)
+            {
+                return;
+            }
             for (int i = 0; i < build.GetComponent<Builddeck>().bestcollect / 2; i++)
             {
                 build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i].transform.parent = transform;
@@ -65,30 +69,31 @@ public class Havecard : MonoBehaviour
         }
     }
     public void Nextgame()
-    {        
-        if (remaincard.Count == 0)
-        {
-            return;
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            build.GetComponent<Builddeck>().pnum[i] = 0;
-        }
-        foreach (var item in remaincard)
-        {
-            item.transform.rotation = Quaternion.Euler(0, 0, 0);
-            item.transform.parent = build.transform;
-            build.GetComponent<Builddeck>().deck.Add(item);
-        }
-        remaincard.Clear();
-        foreach (var item in build.GetComponent<Builddeck>().deck)
-        {
-            build.GetComponent<Builddeck>().Seperatecard(item);
-        }
-        build.GetComponent<Builddeck>().deck.Clear();
-        counter.GetComponent<Fruitcounter>().endgame1 = false;
-        counter.GetComponent<Fruitcounter>().endround = false;
-        Endgame(false);
+    {
+        Application.LoadLevel(1);
+        //if (remaincard.Count == 0)
+        //{
+        //    return;
+        //}
+        //for (int i = 0; i < 4; i++)
+        //{
+        //    build.GetComponent<Builddeck>().pnum[i] = 0;
+        //}
+        //foreach (var item in remaincard)
+        //{
+        //    item.transform.rotation = Quaternion.Euler(0, 0, 0);
+        //    item.transform.parent = build.transform;
+        //    build.GetComponent<Builddeck>().deck.Add(item);
+        //}
+        //remaincard.Clear();
+        //foreach (var item in build.GetComponent<Builddeck>().deck)
+        //{
+        //    build.GetComponent<Builddeck>().Seperatecard(item);
+        //}
+        //build.GetComponent<Builddeck>().deck.Clear();
+        //counter.GetComponent<Fruitcounter>().endgame1 = false;
+        //counter.GetComponent<Fruitcounter>().endround = false;
+        //Endgame(false);
     }
     public void Endgame(bool tf)
     {

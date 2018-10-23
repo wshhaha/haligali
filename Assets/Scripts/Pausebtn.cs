@@ -5,7 +5,8 @@ using UnityEngine;
 public class Pausebtn : MonoBehaviour
 {
     public bool pause=false;
-    public GameObject pausebg;
+    public GameObject blind;
+    public GameObject menu;
 
     public void Pause()
     {
@@ -13,12 +14,22 @@ public class Pausebtn : MonoBehaviour
         if (pause == true)
         {
             Time.timeScale = 0;
-            pausebg.SetActive(true);
+            blind.SetActive(true);
+            menu.SetActive(true);
         }
         else
         {
             Time.timeScale = 1;
-            pausebg.SetActive(false);
+            blind.SetActive(false);
+            menu.SetActive(false);
         }
+    }
+    public void Restart()
+    {
+        Application.LoadLevel(1);
+    }
+    public void Exit()
+    {
+        Application.Quit();
     }
 }

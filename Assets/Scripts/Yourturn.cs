@@ -7,6 +7,7 @@ public class Yourturn : MonoBehaviour
     public bool turn;
     public bool lose = false;
     public GameObject counter;
+    public GameObject nextplayer;
 
 	void Start () 
 	{
@@ -51,7 +52,8 @@ public class Yourturn : MonoBehaviour
         turn = false;
     }
     public void Turnon()
-    {        
-        turn = true;
+    {  
+        if(turn==true)
+        nextplayer.GetComponent<Yourturn>().turn = true;
     }
 }

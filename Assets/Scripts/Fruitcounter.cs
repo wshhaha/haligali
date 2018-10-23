@@ -79,7 +79,7 @@ public class Fruitcounter : MonoBehaviour
         violetnum = vnum[0] + vnum[1] + vnum[2] + vnum[3];
         if (rednum==5|| yellownum == 5 || greennum == 5 || violetnum == 5)
         {
-            canwin = true;
+            canwin = true;            
         }
         else
         {
@@ -98,10 +98,17 @@ public class Fruitcounter : MonoBehaviour
             }            
             opencard.Clear();
         }
-	}   
-    
+	}       
     public void Nextround()
     {
         endround = false;
+        for (int i = 1; i < 4; i++)
+        {
+            if (Build.GetComponent<Builddeck>().p[i].GetComponent<AIscript>().aion == true)
+            {
+                Build.GetComponent<Builddeck>().p[i].GetComponent<AIscript>().Setcooltime();
+                Build.GetComponent<Builddeck>().p[i].GetComponent<AIscript>().reactiontime = 0;
+            }
+        }
     }
 }

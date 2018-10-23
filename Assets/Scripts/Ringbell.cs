@@ -17,13 +17,13 @@ public class Ringbell : MonoBehaviour
     {
         Setplayer();        
     }
-    void Taketurn(int num)
+    public void Taketurn(int num)
     {
         for (int i = 0; i < 4; i++)
         {
             if (i == num)
             {
-                GetComponent<Ringbell>().p[i].GetComponent<Yourturn>().Turnon();
+                GetComponent<Ringbell>().p[i].GetComponent<Yourturn>().turn = true;
             }
             else
             {
@@ -72,9 +72,7 @@ public class Ringbell : MonoBehaviour
             return;
         }
         if (counter.GetComponent<Fruitcounter>().canwin == true)
-        {            
-            counter.GetComponent<Fruitcounter>().endround = true;
-            nextround.text = "ROUND\nWINNER\n" + gameObject.name;
+        {                        
             switch (gameObject.name)
             {
                 case "1P":
@@ -106,6 +104,8 @@ public class Ringbell : MonoBehaviour
                     counter.GetComponent<Fruitcounter>().num[i][j] = 0;
                 }   
             }
+            counter.GetComponent<Fruitcounter>().endround = true;
+            nextround.text = "Round\nWinner\n" + gameObject.name;
         }
         if(counter.GetComponent<Fruitcounter>().canwin ==false && counter.GetComponent<Fruitcounter>().endround == false)
         {
