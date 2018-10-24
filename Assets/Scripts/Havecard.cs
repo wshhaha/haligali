@@ -11,10 +11,23 @@ public class Havecard : MonoBehaviour
     public bool drag = false;
     public UILabel cardnum;
     public bool useitem = false;
+    public AudioClip vicsound;
+    public AudioClip itemsound;
+    public AudioClip dragsound;
+    public bool oncesound = false;
+    public GameObject bgm;
 
-	void Start () 
+    void Start () 
 	{
-		
+        int i = PlayerPrefs.GetInt("item");
+        if (i == 1)
+        {
+            useitem = false;
+        }
+        else
+        {
+            useitem = true;
+        }
 	}
 	
 	void Update () 
@@ -22,8 +35,14 @@ public class Havecard : MonoBehaviour
         cardnum.text = "CARD\n" + remaincard.Count;
         if (remaincard.Count == 60)
         {
+            if (oncesound == false)
+            {
+                bgm.SetActive(false);
+                oncesound = true;
+                Effectsound.instance().Sfxplay(vicsound);
+            }
             victory.text = gameObject.name + "\nVICTORY";
-            counter.GetComponent<Fruitcounter>().endgame1 = true;
+            counter.GetComponent<Fruitcounter>().endgame1 = true;            
             Endgame(true);
         }
         if (drag == true&&GetComponent<Yourturn>().turn==true)
@@ -40,6 +59,7 @@ public class Havecard : MonoBehaviour
             {
                 return;
             }
+            Effectsound.instance().Sfxplay(itemsound);
             for (int i = 0; i < build.GetComponent<Builddeck>().bestcollect / 2; i++)
             {
                 build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i].transform.parent = transform;
@@ -52,7 +72,8 @@ public class Havecard : MonoBehaviour
         useitem = true;
     }
     public void Dragon()
-    {        
+    {
+        Effectsound.instance().Sfxplay(dragsound);
         drag = true;     
     }
     public void Dragoff()

@@ -17,38 +17,33 @@ public class Onoffsoundmusic : MonoBehaviour
 	}	
 	void Update () 
 	{
-		
-	}
-    public void Onclick()
-    {
-        switch (gameObject.name)
+        if (musicoff == true)
         {
-            case "Music":
-                musicoff = !musicoff;
-                if (musicoff == true)
-                {
-                    bgm.GetComponent<AudioSource>().enabled = false;
-                    mu.spriteName = "musicoff";
-                }
-                else
-                {
-                    bgm.GetComponent<AudioSource>().enabled = true;
-                    mu.spriteName = "music";
-                }
-                break;
-            case "Sound":
-                soundoff = !soundoff;
-                if (soundoff == true)
-                {
-                    effect.GetComponent<AudioSource>().enabled = false;
-                    so.spriteName = "soundoff";
-                }
-                else
-                {
-                    effect.GetComponent<AudioSource>().enabled = true;
-                    so.spriteName = "sound";
-                }
-                break;
+            bgm.GetComponent<AudioSource>().enabled = false;
+            mu.spriteName = "musicoff";
         }
+        else
+        {
+            bgm.GetComponent<AudioSource>().enabled = true;
+            mu.spriteName = "music";
+        }
+        if (soundoff == true)
+        {
+            effect.GetComponent<AudioSource>().enabled = false;
+            so.spriteName = "soundoff";
+        }
+        else
+        {
+            effect.GetComponent<AudioSource>().enabled = true;
+            so.spriteName = "sound";
+        }
+    }
+    public void Musicclick()
+    {
+        musicoff = !musicoff;        
+    }
+    public void Soundclick()
+    {
+        soundoff = !soundoff;        
     }
 }

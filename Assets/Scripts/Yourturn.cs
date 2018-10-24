@@ -37,16 +37,16 @@ public class Yourturn : MonoBehaviour
         switch (gameObject.name)
         {
             case "1P":
-                GetComponent<Ringbell>().p2.GetComponent<Yourturn>().Turnon();
+                GetComponent<Ringbell>().p1.GetComponent<Yourturn>().Turnon();
                 break;
             case "2P":
-                GetComponent<Ringbell>().p3.GetComponent<Yourturn>().Turnon();
+                GetComponent<Ringbell>().p2.GetComponent<Yourturn>().Turnon();
                 break;
             case "3P":
-                GetComponent<Ringbell>().p4.GetComponent<Yourturn>().Turnon();
+                GetComponent<Ringbell>().p3.GetComponent<Yourturn>().Turnon();
                 break;
             case "4P":
-                GetComponent<Ringbell>().p1.GetComponent<Yourturn>().Turnon();
+                GetComponent<Ringbell>().p4.GetComponent<Yourturn>().Turnon();
                 break;
         }
         turn = false;

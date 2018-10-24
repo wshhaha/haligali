@@ -12,6 +12,7 @@ public class Ringbell : MonoBehaviour
     public List<GameObject> p;
     public int remain;
     public UILabel nextround;
+    public AudioClip bellsound;
 
     void Start()
     {
@@ -71,6 +72,7 @@ public class Ringbell : MonoBehaviour
         {
             return;
         }
+        Effectsound.instance().Sfxplay(bellsound);
         if (counter.GetComponent<Fruitcounter>().canwin == true)
         {                        
             switch (gameObject.name)

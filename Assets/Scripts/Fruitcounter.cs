@@ -20,7 +20,10 @@ public class Fruitcounter : MonoBehaviour
     public List<List<int>> num;
     public GameObject next;
     public List<GameObject> victory;
-    public GameObject Build;
+    public GameObject build;
+    public AudioClip nextrsound;
+    public GameObject blind;
+    public bool blindon = false;
 
     void Start () 
 	{
@@ -49,29 +52,31 @@ public class Fruitcounter : MonoBehaviour
 	void Update () 
 	{
         if (endgame1 == true)
-        {
+        {         
             for (int i = 0; i < 4; i++)
             {
                 if (endgame[i] == true)
                 {
                     victory[i].SetActive(true);
+                    blind.SetActive(true);
                 }                
             }
         }
         else
-        {
+        {            
             for (int i = 0; i < 4; i++)
             {
                 victory[i].SetActive(false);
             }
-        }
+        }        
         if (endround == true&&endgame1==false)
         {
             next.SetActive(true);
+            blind.SetActive(true);
         }
         else
         {
-            next.SetActive(false);
+            next.SetActive(false);            
         }
         rednum = rnum[0] + rnum[1] + rnum[2] + rnum[3];
         yellownum = ynum[0] + ynum[1] + ynum[2] + ynum[3];
@@ -89,25 +94,27 @@ public class Fruitcounter : MonoBehaviour
         {            
             for (int i = 0; i < 4; i++)
             {
-                Build.GetComponent<Builddeck>().pnum[i] = 0;
+                build.GetComponent<Builddeck>().pnum[i] = 0;
             }
             foreach (var item in opencard)
             {
                 item.transform.rotation = Quaternion.Euler(0, 0, 0);
-                Build.GetComponent<Builddeck>().Seperatecard(item);
+                build.GetComponent<Builddeck>().Seperatecard(item);
             }            
             opencard.Clear();
         }
 	}       
     public void Nextround()
     {
+        Effectsound.instance().Sfxplay(nextrsound);
         endround = false;
+        blind.SetActive(false);
         for (int i = 1; i < 4; i++)
         {
-            if (Build.GetComponent<Builddeck>().p[i].GetComponent<AIscript>().aion == true)
+            if (build.GetComponent<Builddeck>().p[i].GetComponent<AIscript>().aion == true)
             {
-                Build.GetComponent<Builddeck>().p[i].GetComponent<AIscript>().Setcooltime();
-                Build.GetComponent<Builddeck>().p[i].GetComponent<AIscript>().reactiontime = 0;
+                build.GetComponent<Builddeck>().p[i].GetComponent<AIscript>().Setcooltime();
+                build.GetComponent<Builddeck>().p[i].GetComponent<AIscript>().reactiontime = 0;
             }
         }
     }

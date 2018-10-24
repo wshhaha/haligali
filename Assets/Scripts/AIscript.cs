@@ -17,6 +17,9 @@ public class AIscript : MonoBehaviour
 
 	void Start () 
 	{
+        Aionoff();
+        coolmin = PlayerPrefs.GetFloat("mintime");
+        coolmax = PlayerPrefs.GetFloat("maxtime");
         Setcooltime();
         Setdragcool();
         delaycool = 0.2f;
@@ -35,6 +38,45 @@ public class AIscript : MonoBehaviour
             }
         }
 	}
+    public void Aionoff()
+    {
+        switch (gameObject.name)
+        {
+            case "2P":
+                int tf0 = PlayerPrefs.GetInt("ai0");
+                if (tf0 == 1)
+                {
+                    aion = true;
+                }
+                else
+                {
+                    aion = false;
+                }
+                break;
+            case "3P":
+                int tf1 = PlayerPrefs.GetInt("ai1");
+                if (tf1 == 1)
+                {
+                    aion = true;
+                }
+                else
+                {
+                    aion = false;
+                }
+                break;
+            case "4P":
+                int tf2 = PlayerPrefs.GetInt("ai2");
+                if (tf2 == 1)
+                {
+                    aion = true;
+                }
+                else
+                {
+                    aion = false;
+                }
+                break;
+        }
+    }
     public void Aibell()
     {
         if (counter.GetComponent<Fruitcounter>().canwin == true)
@@ -74,7 +116,10 @@ public class AIscript : MonoBehaviour
                 }
                 else
                 {
-                    GetComponent<Havecard>().Dragon();
+                    if (GetComponent<Havecard>().drag == false)
+                    {
+                        GetComponent<Havecard>().Dragon();
+                    }
                     dragtime += Time.deltaTime;
                 }                
             }

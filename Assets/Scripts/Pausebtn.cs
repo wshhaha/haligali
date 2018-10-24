@@ -7,9 +7,11 @@ public class Pausebtn : MonoBehaviour
     public bool pause=false;
     public GameObject blind;
     public GameObject menu;
+    public AudioClip btnsound;
 
     public void Pause()
     {
+        Effectsound.instance().Sfxplay(btnsound);
         pause = !pause;
         if (pause == true)
         {
@@ -26,10 +28,12 @@ public class Pausebtn : MonoBehaviour
     }
     public void Restart()
     {
+        Effectsound.instance().Sfxplay(btnsound);
         Application.LoadLevel(1);
     }
     public void Exit()
     {
+        Effectsound.instance().Sfxplay(btnsound);
         Application.Quit();
     }
 }

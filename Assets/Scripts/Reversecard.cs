@@ -8,6 +8,7 @@ public class Reversecard : MonoBehaviour
     public GameObject counter;
     public int cardnum;
     public Fruitcounter card;
+    public AudioClip reversesound;
 
 	void Start () 
 	{
@@ -32,6 +33,7 @@ public class Reversecard : MonoBehaviour
                 GetComponent<Yourturn>().turn = false;
                 return;
             }
+            Effectsound.instance().Sfxplay(reversesound);
             switch (gameObject.name)
             {
                 case "1P":
