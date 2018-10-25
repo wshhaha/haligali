@@ -20,10 +20,13 @@ public class Fruitcounter : MonoBehaviour
     public List<List<int>> num;
     public GameObject next;
     public List<GameObject> victory;
+    public GameObject singelvic;
+    public GameObject singellose;
     public GameObject build;
     public AudioClip nextrsound;
     public GameObject blind;
     public bool blindon = false;
+    public string roundwinner;
 
     void Start () 
 	{
@@ -52,18 +55,27 @@ public class Fruitcounter : MonoBehaviour
 	void Update () 
 	{
         if (endgame1 == true)
-        {         
-            for (int i = 0; i < 4; i++)
+        {
+            if (PlayerPrefs.GetInt("singel")==1)
             {
-                if (endgame[i] == true)
+                Winorlose();
+                blind.SetActive(true);
+            }
+            else
+            {
+                for (int i = 0; i < 4; i++)
                 {
-                    victory[i].SetActive(true);
-                    blind.SetActive(true);
-                }                
+                    if (endgame[i] == true)
+                    {
+                        victory[i].SetActive(true);
+                        blind.SetActive(true);
+                    }
+                }
             }
         }
         else
-        {            
+        {
+            singelvic.SetActive(false);
             for (int i = 0; i < 4; i++)
             {
                 victory[i].SetActive(false);
@@ -103,12 +115,44 @@ public class Fruitcounter : MonoBehaviour
             }            
             opencard.Clear();
         }
-	}       
+	}      
+    public void Winorlose()
+    {
+        if (build.GetComponent<Builddeck>().p[0].GetComponent<Havecard>().remaincard.Count == 60)
+        {
+            singelvic.SetActive(true);
+        }
+        else
+        {
+            singellose.SetActive(true);
+        }
+        
+    }
+    public void Winnergetcard(string win)
+    {
+        switch (win)
+        {
+            case "1P":
+                build.GetComponent<Builddeck>().p[0].GetComponent<Ringbell>().Takecard();
+                break;
+            case "2P":
+                build.GetComponent<Builddeck>().p[1].GetComponent<Ringbell>().Takecard();
+                break;
+            case "3P":
+                build.GetComponent<Builddeck>().p[2].GetComponent<Ringbell>().Takecard();
+                break;
+            case "4P":
+                build.GetComponent<Builddeck>().p[3].GetComponent<Ringbell>().Takecard();
+                break;
+        }
+    }
     public void Nextround()
     {
         Effectsound.instance().Sfxplay(nextrsound);
+        Winnergetcard(roundwinner);
         endround = false;
         blind.SetActive(false);
+        canwin = false;
         for (int i = 1; i < 4; i++)
         {
             if (build.GetComponent<Builddeck>().p[i].GetComponent<AIscript>().aion == true)

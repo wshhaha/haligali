@@ -31,6 +31,10 @@ public class Yourturn : MonoBehaviour
         {
             Skipturn();
         }
+        if (gameObject.name == "1P" && lose == true)
+        {
+            counter.GetComponent<Fruitcounter>().singellose.SetActive(true);
+        }
 	}
     void Skipturn()
     {

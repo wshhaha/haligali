@@ -18,6 +18,7 @@ public class Stagebtn : MonoBehaviour
             btn.transform.localScale = new Vector3(1, 1, 1);
         }
         GetComponent<UIGrid>().enabled = true;
+        singel.transform.localPosition = Vector3.zero;
         singel.SetActive(false);
     }	
 	void Update () 

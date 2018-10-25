@@ -5,10 +5,47 @@ using UnityEngine;
 public class Stagebtninfo : MonoBehaviour 
 {
     public int stnum;
+    public int unlock;
+    public string origin;
+    public UILabel btnname;
+    static Stagebtninfo _instance;
+    public static Stagebtninfo instance()
+    {
+        return _instance;
+    }
 
+    void Start()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        origin = GetComponent<UISprite>().spriteName;        
+    }
+    void Update()
+    {
+        unlock = PlayerPrefs.GetInt("unlock") + 2;
+        if (stnum < unlock)
+        {
+            GetComponent<UISprite>().spriteName = origin;
+            btnname.text = "" + stnum;
+        }
+        else
+        {
+            GetComponent<UISprite>().spriteName = "lock3";
+            btnname.text = "";
+        }
+    }
     public void Setuispeed(int num)
     {
-        switch (num)
+        if (btnname.text == "")
+        {
+            return;
+        }
+        PlayerPrefs.SetString("stage","STAGE\n"+num);
+        int realnum = num - 1;
+        PlayerPrefs.SetInt("realnum", num);
+        switch (realnum)
         {
             case 0:
                 PlayerPrefs.SetFloat("mintime", 1f);

@@ -24,11 +24,11 @@ public class Ringbell : MonoBehaviour
         {
             if (i == num)
             {
-                GetComponent<Ringbell>().p[i].GetComponent<Yourturn>().turn = true;
+                p[i].GetComponent<Yourturn>().turn = true;
             }
             else
             {
-                GetComponent<Ringbell>().p[i].GetComponent<Yourturn>().turn = false;
+                p[i].GetComponent<Yourturn>().turn = false;
             }
         }
     }
@@ -66,6 +66,30 @@ public class Ringbell : MonoBehaviour
             Giveother(i + num);
         }                
     }
+    public void Takecard()
+    {
+        foreach (var item in counter.GetComponent<Fruitcounter>().opencard)
+        {
+            item.transform.parent = transform;
+            item.GetComponent<UIPanel>().depth = 0;
+            GetComponent<Havecard>().remaincard.Add(item);
+            item.transform.localPosition = Vector3.zero;
+            item.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+        counter.GetComponent<Fruitcounter>().opencard.Clear();
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                counter.GetComponent<Fruitcounter>().num[i][j] = 0;
+            }
+        }
+        nextround.text = "";
+    }
+    public void Sendwinner()
+    {
+        counter.GetComponent<Fruitcounter>().roundwinner = gameObject.name;
+    }
     public void Ring()
     {
         if (GetComponent<Yourturn>().lose == true)
@@ -74,7 +98,8 @@ public class Ringbell : MonoBehaviour
         }
         Effectsound.instance().Sfxplay(bellsound);
         if (counter.GetComponent<Fruitcounter>().canwin == true)
-        {                        
+        {
+            Sendwinner();
             switch (gameObject.name)
             {
                 case "1P":
@@ -89,23 +114,7 @@ public class Ringbell : MonoBehaviour
                 case "4P":
                     Taketurn(3);
                     break;
-            }
-            foreach (var item in counter.GetComponent<Fruitcounter>().opencard)
-            {
-                item.transform.parent = transform;
-                item.GetComponent<UIPanel>().depth = 0;
-                GetComponent<Havecard>().remaincard.Add(item);
-                item.transform.localPosition = Vector3.zero;
-                item.transform.localRotation = Quaternion.Euler(0, 0, 0);                
-            }
-            counter.GetComponent<Fruitcounter>().opencard.Clear();
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    counter.GetComponent<Fruitcounter>().num[i][j] = 0;
-                }   
-            }
+            }            
             counter.GetComponent<Fruitcounter>().endround = true;
             nextround.text = "Round\nWinner\n" + gameObject.name;
         }

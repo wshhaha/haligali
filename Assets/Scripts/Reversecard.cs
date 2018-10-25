@@ -9,6 +9,8 @@ public class Reversecard : MonoBehaviour
     public int cardnum;
     public Fruitcounter card;
     public AudioClip reversesound;
+    public GameObject reverseeffect;
+    public GameObject eftmanager;
 
 	void Start () 
 	{
@@ -49,6 +51,10 @@ public class Reversecard : MonoBehaviour
                     Change(3);
                     break;
             }
+            GameObject eft = Instantiate(reverseeffect);
+            eft.transform.parent = eftmanager.transform;
+            eft.transform.localPosition = Vector3.zero;
+            eft.transform.localScale *= 2;
             check = false;
             GetComponent<Yourturn>().turn = false;
         }

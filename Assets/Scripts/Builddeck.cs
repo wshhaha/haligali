@@ -125,6 +125,10 @@ public class Builddeck : MonoBehaviour
                 break;
         }
     }
+    IEnumerator Gotoplayer()
+    {
+        yield return new WaitForEndOfFrame();
+    }
     public void Createcard(GameObject card, int pn)
     {
         if (pnum[pn] > 14)

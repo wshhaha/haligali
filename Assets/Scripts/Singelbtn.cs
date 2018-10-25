@@ -18,6 +18,7 @@ public class Singelbtn : MonoBehaviour
             PlayerPrefs.SetInt("ai0", 1);
             PlayerPrefs.SetInt("ai1", 1);
             PlayerPrefs.SetInt("ai2", 1);
+            PlayerPrefs.SetInt("singel", 1);
         }
         else
         {
@@ -35,6 +36,8 @@ public class Singelbtn : MonoBehaviour
             PlayerPrefs.SetInt("ai2", 1);
             PlayerPrefs.SetFloat("mintime", 0.1f);
             PlayerPrefs.SetFloat("maxtime", 1f);
+            PlayerPrefs.SetInt("singel", 0);
+            PlayerPrefs.SetString("stage", "MULTI\nPLAY");
         }
         else
         {

@@ -79,8 +79,8 @@ public class AIscript : MonoBehaviour
     }
     public void Aibell()
     {
-        if (counter.GetComponent<Fruitcounter>().canwin == true)
-        {
+        if (GetComponent<Ringbell>().nextround.text == "")
+        {            
             reactiontime += Time.deltaTime;
             if (reactiontime >= cooltime)
             {

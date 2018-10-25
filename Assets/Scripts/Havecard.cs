@@ -91,30 +91,29 @@ public class Havecard : MonoBehaviour
     }
     public void Nextgame()
     {
+        if (PlayerPrefs.GetInt("singel") == 1)
+        {
+            GetComponent<Singelstage>().Nextstageset();
+        }
+        else
+        {
+            Application.LoadLevel(1);
+        }
+    }
+    public void Retry()
+    {
         Application.LoadLevel(1);
-        //if (remaincard.Count == 0)
-        //{
-        //    return;
-        //}
-        //for (int i = 0; i < 4; i++)
-        //{
-        //    build.GetComponent<Builddeck>().pnum[i] = 0;
-        //}
-        //foreach (var item in remaincard)
-        //{
-        //    item.transform.rotation = Quaternion.Euler(0, 0, 0);
-        //    item.transform.parent = build.transform;
-        //    build.GetComponent<Builddeck>().deck.Add(item);
-        //}
-        //remaincard.Clear();
-        //foreach (var item in build.GetComponent<Builddeck>().deck)
-        //{
-        //    build.GetComponent<Builddeck>().Seperatecard(item);
-        //}
-        //build.GetComponent<Builddeck>().deck.Clear();
-        //counter.GetComponent<Fruitcounter>().endgame1 = false;
-        //counter.GetComponent<Fruitcounter>().endround = false;
-        //Endgame(false);
+    }
+    public void Returntotitlewin()
+    {
+        int i = PlayerPrefs.GetInt("unlock");
+        i++;
+        PlayerPrefs.SetInt("unlock", i);
+        Application.LoadLevel(0);        
+    }
+    public void Returntotitlelose()
+    {
+        Application.LoadLevel(0);
     }
     public void Endgame(bool tf)
     {
