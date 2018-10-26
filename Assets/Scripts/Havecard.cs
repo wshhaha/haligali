@@ -16,7 +16,7 @@ public class Havecard : MonoBehaviour
     public AudioClip dragsound;
     public bool oncesound = false;
     public GameObject bgm;
-
+    public float degree;
     void Start () 
 	{
         int i = PlayerPrefs.GetInt("item");
@@ -47,7 +47,12 @@ public class Havecard : MonoBehaviour
         }
         if (drag == true&&GetComponent<Yourturn>().turn==true)
         {
+            degree += Time.deltaTime * 200;
             Dragcard();
+        }
+        else
+        {
+            degree = 0;
         }
 	}    
     public void Pillage()
@@ -84,6 +89,11 @@ public class Havecard : MonoBehaviour
     {
         remaincard[0].GetComponent<UIPanel>().depth = counter.GetComponent<Fruitcounter>().opencard.Count;
         remaincard[0].transform.Translate(0, Time.deltaTime, 0);
+        if (degree > 90)
+        {
+            degree = 90;
+        }
+        remaincard[0].GetComponentInChildren<UISprite>().transform.localRotation = Quaternion.Euler(-degree, 0, 0);
         if (remaincard[0].transform.localPosition.y >= 0.25f)
         {
             remaincard[0].transform.localPosition = new Vector3(0, 0.25f, 0);

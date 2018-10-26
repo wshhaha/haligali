@@ -34,6 +34,6 @@ public class Pausebtn : MonoBehaviour
     public void Exit()
     {
         Effectsound.instance().Sfxplay(btnsound);
-        Application.Quit();
+        Application.LoadLevel(0);
     }
 }

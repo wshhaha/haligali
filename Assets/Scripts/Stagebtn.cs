@@ -9,6 +9,7 @@ public class Stagebtn : MonoBehaviour
     
 	void Start () 
 	{
+        Time.timeScale = 0;
         for (int i = 0; i < 30; i++)
         {
             GameObject btn=Instantiate(stagebtn);
@@ -20,9 +21,5 @@ public class Stagebtn : MonoBehaviour
         GetComponent<UIGrid>().enabled = true;
         singel.transform.localPosition = Vector3.zero;
         singel.SetActive(false);
-    }	
-	void Update () 
-	{
-		
-	}
+    }		
 }

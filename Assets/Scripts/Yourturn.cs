@@ -8,9 +8,12 @@ public class Yourturn : MonoBehaviour
     public bool lose = false;
     public GameObject counter;
     public GameObject nextplayer;
+    public GameObject bulid;
+    public float starttime;
 
 	void Start () 
 	{
+        starttime = 0;
         if (gameObject.name == "1P")
         {
             turn = true;
@@ -18,7 +21,8 @@ public class Yourturn : MonoBehaviour
 	}
 	
 	void Update () 
-	{
+	{        
+        starttime += Time.deltaTime;     
 		if(counter.GetComponent<Fruitcounter>().endround == true&&GetComponent<Havecard>().remaincard.Count==0)
         {
             lose = true;
@@ -27,17 +31,21 @@ public class Yourturn : MonoBehaviour
         {
             Skipturn();
         }
-        if (GetComponent<Havecard>().remaincard.Count == 0)
-        {
+        if (GetComponent<Havecard>().remaincard.Count == 0&&starttime > 3)
+        {            
             Skipturn();
         }
-        if (gameObject.name == "1P" && lose == true)
+        if (gameObject.name == "1P" && lose == true && PlayerPrefs.GetInt("singel") == 1)
         {
             counter.GetComponent<Fruitcounter>().singellose.SetActive(true);
         }
+        if (turn == true && PlayerPrefs.GetInt("singel") == 0)
+        {
+            Stageinfo.instance().GetComponent<UILabel>().text = gameObject.name + "\nTurn";
+        }
 	}
     void Skipturn()
-    {
+    {        
         switch (gameObject.name)
         {
             case "1P":

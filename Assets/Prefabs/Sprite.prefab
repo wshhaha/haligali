@@ -223,7 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 0}
   hover: {x: 1, y: 1, z: 1}
-  pressed: {x: 0.9, y: 0.9, z: 0.9}
+  pressed: {x: 1.25, y: 1.25, z: 1.25}
   duration: 0.2
 --- !u!114 &114362792944939056
 MonoBehaviour:

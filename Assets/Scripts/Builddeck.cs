@@ -21,15 +21,17 @@ public class Builddeck : MonoBehaviour
     public List<int> limits;
     public int bestcollect;
     public GameObject target;
-    public int who;
+    public int who;    
 
     void Start () 
-	{        
+	{
+        Time.timeScale = 1;
         Colornumreset();
         Playerreset();
-        CardColor();
-        Createdeck();        
+        CardColor();        
+        StartCoroutine("Createdeck");        
     }
+    
     public void Resetitem()
     {
         for (int i = 0; i < 4; i++)
@@ -93,18 +95,21 @@ public class Builddeck : MonoBehaviour
         num.Add(gnum);
         num.Add(vnum);
     }
- 	void Createdeck()
+ 	IEnumerator Createdeck()
     {
-        for (int i = 0; i < 60; i++)
+        int i = 0;
+        while (i<60)
         {
-            GameObject deck = Instantiate(card);
+            GameObject deck = Instantiate(card);            
             deck.transform.parent = transform;
             deck.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f);
             Selectfruit(deck);
             Givenum(deck);
             Seperatecard(deck);
             deck.name = deck.tag + deck.GetComponent<Cardstat>().numfruit;
-        }        
+            i++;
+            yield return new WaitForEndOfFrame();
+        }       
     }
     public void Seperatecard(GameObject obj1)
     {
@@ -125,9 +130,17 @@ public class Builddeck : MonoBehaviour
                 break;
         }
     }
-    IEnumerator Gotoplayer()
-    {
-        yield return new WaitForEndOfFrame();
+    IEnumerator Gotoplayer(GameObject newcard)
+    {        
+        Vector3 ori = newcard.transform.localPosition;
+        float factor=1;
+        while (factor>0)
+        {
+            newcard.transform.localPosition = ori * factor;
+            factor -= 0.1f;
+            yield return new WaitForEndOfFrame();
+        }
+        newcard.transform.localPosition = Vector3.zero;        
     }
     public void Createcard(GameObject card, int pn)
     {
@@ -136,9 +149,10 @@ public class Builddeck : MonoBehaviour
             Seperatecard(card);
         }
         else
-        {
+        {            
             card.transform.parent = p[pn].transform;
-            card.transform.localPosition = Vector3.zero;
+            //card.transform.localPosition *= 0;
+            StartCoroutine("Gotoplayer",card);
             p[pn].GetComponent<Havecard>().remaincard.Add(card);
             pnum[pn]++;
             if (pn == 1)

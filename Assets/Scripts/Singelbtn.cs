@@ -51,5 +51,5 @@ public class Singelbtn : MonoBehaviour
     public void Exitgame()
     {
         Application.Quit();
-    }
+    }    
 }

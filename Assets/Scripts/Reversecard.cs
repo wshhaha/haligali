@@ -121,6 +121,7 @@ public class Reversecard : MonoBehaviour
         GetComponent<Havecard>().remaincard[0].GetComponent<UIPanel>().depth = counter.GetComponent<Fruitcounter>().opencard.Count;
         GetComponent<Havecard>().remaincard[0].transform.localPosition = new Vector3(0, 0.25f, 0);
         GetComponent<Havecard>().remaincard[0].transform.Rotate(180, 0, 0);
+        GetComponent<Havecard>().remaincard[0].GetComponentInChildren<UISprite>().transform.localRotation = Quaternion.Euler(0, 0, 0);
         GetComponent<Havecard>().remaincard[0].transform.parent = counter.transform;
         counter.GetComponent<Fruitcounter>().opencard.Add(GetComponent<Havecard>().remaincard[0]);
     }
