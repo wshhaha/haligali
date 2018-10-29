@@ -13,6 +13,8 @@ public class Ringbell : MonoBehaviour
     public int remain;
     public UILabel nextround;
     public AudioClip bellsound;
+    public int pncnt;
+    public int lpcnt;
 
     void Start()
     {
@@ -57,13 +59,23 @@ public class Ringbell : MonoBehaviour
             GetComponent<Havecard>().remaincard[0].transform.localRotation = Quaternion.Euler(0, 0, 0);
             p[(num + 1)].GetComponent<Havecard>().remaincard.Add(GetComponent<Havecard>().remaincard[0]);
             GetComponent<Havecard>().remaincard.Remove(GetComponent<Havecard>().remaincard[0]);
+            pncnt++;
         }
     }
     void Penelity(int num, int need)
-    {        
-        for (int i = 0; i < need; i++)
+    {
+        if (counter.GetComponent<Fruitcounter>().opencard.Count == 0)
+        {
+            return;
+        }
+        pncnt = 0;
+        for (int i = 0; i < 3; i++)
         {
             Giveother(i + num);
+            if (pncnt == need)
+            {                
+                break;
+            }
         }                
     }
     public void Takecard()
@@ -89,6 +101,17 @@ public class Ringbell : MonoBehaviour
     public void Sendwinner()
     {
         counter.GetComponent<Fruitcounter>().roundwinner = gameObject.name;
+    }
+    public void Liveplayer()
+    {
+        lpcnt = 0;
+        for (int i = 0; i < 4; i++)
+        {
+            if (counter.GetComponent<Fruitcounter>().build.GetComponent<Builddeck>().p[i].GetComponent<Yourturn>().lose == false)
+            {
+                lpcnt++; 
+            }
+        }        
     }
     public void Ring()
     {
@@ -120,8 +143,12 @@ public class Ringbell : MonoBehaviour
         }
         if(counter.GetComponent<Fruitcounter>().canwin ==false && counter.GetComponent<Fruitcounter>().endround == false)
         {
-            if (GetComponent<Havecard>().remaincard.Count <= 2)
+            if (GetComponent<Havecard>().remaincard.Count == 0)
             {
+                return;
+            }
+            if (GetComponent<Havecard>().remaincard.Count <= 2)
+            {                
                 switch (gameObject.name)
                 {
                     case "1P":
@@ -140,23 +167,23 @@ public class Ringbell : MonoBehaviour
             }
             else
             {
+                Liveplayer();
                 switch (gameObject.name)
                 {
                     case "1P":
-                        Penelity(0,3);
+                        Penelity(0, lpcnt - 1);
                         break;
                     case "2P":
-                        Penelity(1,3);
+                        Penelity(1, lpcnt - 1);
                         break;
                     case "3P":
-                        Penelity(2,3);
+                        Penelity(2, lpcnt - 1);
                         break;
                     case "4P":
-                        Penelity(3,3);
+                        Penelity(3, lpcnt - 1);
                         break;
                 }
             }
-            
         }
     }
 }
