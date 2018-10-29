@@ -60,7 +60,7 @@ public class Havecard : MonoBehaviour
         if (useitem == false&&GetComponent<Yourturn>().turn==true)
         {
             build.GetComponent<Builddeck>().Lockon();
-            if (build.GetComponent<Builddeck>().target == gameObject)
+            if (build.GetComponent<Builddeck>().target == gameObject || build.GetComponent<Builddeck>().target == null)
             {
                 return;
             }

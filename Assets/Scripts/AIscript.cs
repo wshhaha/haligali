@@ -14,6 +14,9 @@ public class AIscript : MonoBehaviour
     public float dragcool;
     public float delay;
     public float delaycool;
+    public GameObject ringbtn;
+    public GameObject reversebtn;    
+    public GameObject itembtn;
 
 	void Start () 
 	{
@@ -23,6 +26,7 @@ public class AIscript : MonoBehaviour
         Setcooltime();
         Setdragcool();
         delaycool = 0.2f;
+        Btnlock();
     }	
 	void Update () 
 	{
@@ -38,6 +42,15 @@ public class AIscript : MonoBehaviour
             }
         }
 	}
+    public void Btnlock()
+    {
+        if (aion == true)
+        {
+            itembtn.GetComponent<UIButton>().enabled = false;
+            ringbtn.GetComponent<UIButton>().enabled = false;
+            reversebtn.GetComponent<UIEventTrigger>().enabled = false;
+        }
+    }
     public void Aionoff()
     {
         switch (gameObject.name)

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -549,6 +549,8 @@ MonoBehaviour:
   remain: 0
   nextround: {fileID: 1102887483}
   bellsound: {fileID: 8300000, guid: c481301ad58dab246baf51fa6b323100, type: 3}
+  pncnt: 0
+  lpcnt: 0
 --- !u!114 &50731486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,6 +572,9 @@ MonoBehaviour:
   dragcool: 0
   delay: 0
   delaycool: 0
+  ringbtn: {fileID: 1402941182}
+  reversebtn: {fileID: 1599933668}
+  itembtn: {fileID: 1377282188}
 --- !u!1 &84012772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,6 +1390,8 @@ MonoBehaviour:
   remain: 0
   nextround: {fileID: 1102887483}
   bellsound: {fileID: 8300000, guid: c481301ad58dab246baf51fa6b323100, type: 3}
+  pncnt: 0
+  lpcnt: 0
 --- !u!114 &188486204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1607,6 +1614,8 @@ MonoBehaviour:
   remain: 0
   nextround: {fileID: 1102887483}
   bellsound: {fileID: 8300000, guid: c481301ad58dab246baf51fa6b323100, type: 3}
+  pncnt: 0
+  lpcnt: 0
 --- !u!114 &269155552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1628,6 +1637,9 @@ MonoBehaviour:
   dragcool: 0
   delay: 0
   delaycool: 0
+  ringbtn: {fileID: 1422985558}
+  reversebtn: {fileID: 952123519}
+  itembtn: {fileID: 1309155963}
 --- !u!1 &301949588
 GameObject:
   m_ObjectHideFlags: 0
@@ -8379,6 +8391,8 @@ MonoBehaviour:
   remain: 0
   nextround: {fileID: 1102887483}
   bellsound: {fileID: 8300000, guid: c481301ad58dab246baf51fa6b323100, type: 3}
+  pncnt: 0
+  lpcnt: 0
 --- !u!114 &1762310227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8400,6 +8414,9 @@ MonoBehaviour:
   dragcool: 0
   delay: 0
   delaycool: 0
+  ringbtn: {fileID: 1664320522}
+  reversebtn: {fileID: 514131134}
+  itembtn: {fileID: 735279161}
 --- !u!1 &1774122045
 GameObject:
   m_ObjectHideFlags: 0
