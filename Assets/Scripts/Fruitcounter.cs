@@ -107,6 +107,7 @@ public class Fruitcounter : MonoBehaviour
             for (int i = 0; i < 4; i++)
             {
                 build.GetComponent<Builddeck>().pnum[i] = 0;
+                build.GetComponent<Builddeck>().p[i].GetComponent<Yourturn>().starttime = 0;
             }
             foreach (var item in opencard)
             {

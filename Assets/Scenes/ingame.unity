@@ -886,7 +886,7 @@ MonoBehaviour:
   lose: 0
   counter: {fileID: 1379446340}
   nextplayer: {fileID: 1762310221}
-  bulid: {fileID: 93379170}
+  build: {fileID: 93379170}
   starttime: 0
 --- !u!114 &50731485
 MonoBehaviour:
@@ -910,6 +910,7 @@ MonoBehaviour:
   bellsound: {fileID: 8300000, guid: c481301ad58dab246baf51fa6b323100, type: 3}
   pncnt: 0
   lpcnt: 0
+  wait: 0
 --- !u!114 &50731486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1316,6 +1317,7 @@ MonoBehaviour:
   bestcollect: 0
   target: {fileID: 0}
   who: 0
+  suffle: 0
 --- !u!4 &93379172
 Transform:
   m_ObjectHideFlags: 0
@@ -1812,7 +1814,7 @@ MonoBehaviour:
   lose: 0
   counter: {fileID: 1379446340}
   nextplayer: {fileID: 50731480}
-  bulid: {fileID: 93379170}
+  build: {fileID: 93379170}
   starttime: 0
 --- !u!114 &188486203
 MonoBehaviour:
@@ -1836,6 +1838,7 @@ MonoBehaviour:
   bellsound: {fileID: 8300000, guid: c481301ad58dab246baf51fa6b323100, type: 3}
   pncnt: 0
   lpcnt: 0
+  wait: 0
 --- !u!114 &188486204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2236,7 +2239,7 @@ MonoBehaviour:
   lose: 0
   counter: {fileID: 1379446340}
   nextplayer: {fileID: 188486198}
-  bulid: {fileID: 93379170}
+  build: {fileID: 93379170}
   starttime: 0
 --- !u!114 &269155551
 MonoBehaviour:
@@ -2260,6 +2263,7 @@ MonoBehaviour:
   bellsound: {fileID: 8300000, guid: c481301ad58dab246baf51fa6b323100, type: 3}
   pncnt: 0
   lpcnt: 0
+  wait: 0
 --- !u!114 &269155552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12309,7 +12313,7 @@ MonoBehaviour:
   lose: 0
   counter: {fileID: 1379446340}
   nextplayer: {fileID: 269155546}
-  bulid: {fileID: 93379170}
+  build: {fileID: 93379170}
   starttime: 0
 --- !u!114 &1762310226
 MonoBehaviour:
@@ -12333,6 +12337,7 @@ MonoBehaviour:
   bellsound: {fileID: 8300000, guid: c481301ad58dab246baf51fa6b323100, type: 3}
   pncnt: 0
   lpcnt: 0
+  wait: 0
 --- !u!114 &1762310227
 MonoBehaviour:
   m_ObjectHideFlags: 0

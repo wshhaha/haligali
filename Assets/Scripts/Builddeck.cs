@@ -21,7 +21,8 @@ public class Builddeck : MonoBehaviour
     public List<int> limits;
     public int bestcollect;
     public GameObject target;
-    public int who;    
+    public int who;
+    public bool suffle;
 
     void Start () 
 	{
@@ -113,6 +114,7 @@ public class Builddeck : MonoBehaviour
     }
     public void Seperatecard(GameObject obj1)
     {
+        suffle = true;
         who = Random.Range(0, 4);
         switch (who)
         {
@@ -129,6 +131,7 @@ public class Builddeck : MonoBehaviour
                 Createcard(obj1, who);
                 break;
         }
+        suffle = false;
     }
     IEnumerator Gotoplayer(GameObject newcard)
     {        

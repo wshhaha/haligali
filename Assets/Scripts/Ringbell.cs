@@ -167,6 +167,7 @@ public class Ringbell : MonoBehaviour
             }            
             counter.GetComponent<Fruitcounter>().endround = true;
             nextround.text = "Round\nWinner\n" + gameObject.name;
+            wait = false;
         }
         if(counter.GetComponent<Fruitcounter>().canwin ==false && counter.GetComponent<Fruitcounter>().endround == false)
         {

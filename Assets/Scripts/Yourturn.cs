@@ -8,7 +8,7 @@ public class Yourturn : MonoBehaviour
     public bool lose = false;
     public GameObject counter;
     public GameObject nextplayer;
-    public GameObject bulid;
+    public GameObject build;
     public float starttime;
 
 	void Start () 
@@ -35,8 +35,13 @@ public class Yourturn : MonoBehaviour
         {
             Skipturn();
         }
-        if (GetComponent<Havecard>().remaincard.Count == 0&&starttime > 3)
-        {            
+        if (GetComponent<Havecard>().remaincard.Count == 0 && starttime > 3)
+        {
+            print("1");
+            if (build.GetComponent<Builddeck>().suffle == true)
+            {
+                return;
+            }
             Skipturn();
         }
         if (gameObject.name == "1P" && lose == true && PlayerPrefs.GetInt("singel") == 1)
