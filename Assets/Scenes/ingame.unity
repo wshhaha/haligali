@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6748,6 +6748,7 @@ GameObject:
   - component: {fileID: 1402941184}
   - component: {fileID: 1402941188}
   - component: {fileID: 1402941187}
+  - component: {fileID: 1402941189}
   m_Layer: 5
   m_Name: Ring
   m_TagString: Untagged
@@ -6792,11 +6793,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 50731485}
-    mMethodName: Ring
-    mParameters: []
-    oneShot: 0
+  onClick: []
 --- !u!65 &1402941185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6892,6 +6889,34 @@ MonoBehaviour:
   player: {fileID: 50731480}
   ori: 
   lose: lock2
+--- !u!114 &1402941189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1402941182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e862f287df53bb64db191162f851a296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHoverOver: []
+  onHoverOut: []
+  onPress:
+  - mTarget: {fileID: 50731485}
+    mMethodName: Ring
+    mParameters: []
+    oneShot: 0
+  onRelease: []
+  onSelect: []
+  onDeselect: []
+  onClick: []
+  onDoubleClick: []
+  onDragStart: []
+  onDragEnd: []
+  onDragOver: []
+  onDragOut: []
+  onDrag: []
 --- !u!1 &1406438725
 GameObject:
   m_ObjectHideFlags: 0
@@ -6905,6 +6930,7 @@ GameObject:
   - component: {fileID: 1406438727}
   - component: {fileID: 1406438731}
   - component: {fileID: 1406438730}
+  - component: {fileID: 1406438732}
   m_Layer: 5
   m_Name: Ring
   m_TagString: Untagged
@@ -6949,11 +6975,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 188486203}
-    mMethodName: Ring
-    mParameters: []
-    oneShot: 0
+  onClick: []
 --- !u!65 &1406438728
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7049,6 +7071,34 @@ MonoBehaviour:
   player: {fileID: 188486198}
   ori: 
   lose: lock1
+--- !u!114 &1406438732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1406438725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e862f287df53bb64db191162f851a296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHoverOver: []
+  onHoverOut: []
+  onPress:
+  - mTarget: {fileID: 188486203}
+    mMethodName: Ring
+    mParameters: []
+    oneShot: 0
+  onRelease: []
+  onSelect: []
+  onDeselect: []
+  onClick: []
+  onDoubleClick: []
+  onDragStart: []
+  onDragEnd: []
+  onDragOver: []
+  onDragOut: []
+  onDrag: []
 --- !u!1 &1422985558
 GameObject:
   m_ObjectHideFlags: 0
@@ -7062,6 +7112,7 @@ GameObject:
   - component: {fileID: 1422985560}
   - component: {fileID: 1422985564}
   - component: {fileID: 1422985563}
+  - component: {fileID: 1422985565}
   m_Layer: 5
   m_Name: Ring
   m_TagString: Untagged
@@ -7106,11 +7157,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 269155551}
-    mMethodName: Ring
-    mParameters: []
-    oneShot: 0
+  onClick: []
 --- !u!65 &1422985561
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7206,6 +7253,34 @@ MonoBehaviour:
   player: {fileID: 269155546}
   ori: 
   lose: lock4
+--- !u!114 &1422985565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1422985558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e862f287df53bb64db191162f851a296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHoverOver: []
+  onHoverOut: []
+  onPress:
+  - mTarget: {fileID: 269155551}
+    mMethodName: Ring
+    mParameters: []
+    oneShot: 0
+  onRelease: []
+  onSelect: []
+  onDeselect: []
+  onClick: []
+  onDoubleClick: []
+  onDragStart: []
+  onDragEnd: []
+  onDragOver: []
+  onDragOut: []
+  onDrag: []
 --- !u!1 &1486918747
 GameObject:
   m_ObjectHideFlags: 0
@@ -8048,6 +8123,7 @@ GameObject:
   - component: {fileID: 1664320524}
   - component: {fileID: 1664320528}
   - component: {fileID: 1664320527}
+  - component: {fileID: 1664320529}
   m_Layer: 5
   m_Name: Ring
   m_TagString: Untagged
@@ -8092,11 +8168,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 1762310226}
-    mMethodName: Ring
-    mParameters: []
-    oneShot: 0
+  onClick: []
 --- !u!65 &1664320525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8192,6 +8264,34 @@ MonoBehaviour:
   player: {fileID: 1762310221}
   ori: 
   lose: lock3
+--- !u!114 &1664320529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1664320522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e862f287df53bb64db191162f851a296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHoverOver: []
+  onHoverOut: []
+  onPress:
+  - mTarget: {fileID: 1762310226}
+    mMethodName: Ring
+    mParameters: []
+    oneShot: 0
+  onRelease: []
+  onSelect: []
+  onDeselect: []
+  onClick: []
+  onDoubleClick: []
+  onDragStart: []
+  onDragEnd: []
+  onDragOver: []
+  onDragOut: []
+  onDrag: []
 --- !u!1 &1694856567
 GameObject:
   m_ObjectHideFlags: 0
