@@ -49,6 +49,7 @@ public class AIscript : MonoBehaviour
             itembtn.GetComponent<UIButton>().enabled = false;
             ringbtn.GetComponent<UIButton>().enabled = false;
             reversebtn.GetComponent<UIEventTrigger>().enabled = false;
+            GetComponent<Havecard>().useitem = true;
         }
     }
     public void Aionoff()

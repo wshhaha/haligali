@@ -10,6 +10,7 @@ public class Havecard : MonoBehaviour
     public GameObject build;
     public bool drag = false;
     public UILabel cardnum;
+    public UILabel itemact;
     public bool useitem = false;
     public AudioClip vicsound;
     public AudioClip itemsound;
@@ -17,6 +18,12 @@ public class Havecard : MonoBehaviour
     public bool oncesound = false;
     public GameObject bgm;
     public float degree;
+    public GameObject itemmenu;
+    public GameObject itemblind;
+    public UILabel user;
+    public UILabel target;
+    public UILabel amount;
+
     void Start () 
 	{
         int i = PlayerPrefs.GetInt("item");
@@ -32,7 +39,15 @@ public class Havecard : MonoBehaviour
 	
 	void Update () 
 	{
-        cardnum.text = "CARD\n" + remaincard.Count;
+        cardnum.text = "\nCARD : " + remaincard.Count;
+        if (useitem == false)
+        {
+            itemact.text = "ITEM : O\n";
+        }
+        else
+        {
+            itemact.text = "ITEM : X\n";
+        }
         if (remaincard.Count == 60)
         {
             if (oncesound == false)
@@ -55,26 +70,51 @@ public class Havecard : MonoBehaviour
             degree = 0;
         }
 	}    
-    public void Pillage()
+    public void Pillageready()
     {
-        if (useitem == false&&GetComponent<Yourturn>().turn==true)
+        if (useitem == false && GetComponent<Yourturn>().turn == true)
         {
             build.GetComponent<Builddeck>().Lockon();
             if (build.GetComponent<Builddeck>().target == gameObject || build.GetComponent<Builddeck>().target == null)
             {
                 return;
             }
-            Effectsound.instance().Sfxplay(itemsound);
-            for (int i = 0; i < build.GetComponent<Builddeck>().bestcollect / 2; i++)
-            {
-                build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i].transform.parent = transform;
-                build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i].transform.localRotation = Quaternion.Euler(0, 0, 0);
-                build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i].transform.localPosition = Vector3.zero;
-                remaincard.Add(build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i]);
-                build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard.Remove(build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i]);
-            }
+            itemblind.SetActive(true);
+            itemmenu.SetActive(true);
+            user.text = "USER : " + gameObject.name;
+            target.text = "TARGET : " + build.GetComponent<Builddeck>().target.gameObject.name;
+            amount.text = "CARD : " + build.GetComponent<Builddeck>().bestcollect / 2;
         }
-        useitem = true;
+    }
+    public void Pilcancel()
+    {
+        itemblind.SetActive(false);
+        itemmenu.SetActive(false);
+    }
+    public void Pillage()
+    {
+        Effectsound.instance().Sfxplay(itemsound);
+        itemblind.SetActive(false);
+        itemmenu.SetActive(false);
+        StartCoroutine("Pillagemove");
+        useitem = true;        
+    }
+    IEnumerator Pillagemove()
+    {
+        for (int i = 0; i < build.GetComponent<Builddeck>().bestcollect / 2; i++)
+        {
+            build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i].transform.parent = transform;
+            build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i].transform.localRotation = Quaternion.Euler(0, 0, 0);            
+            Vector3 ori = build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i].transform.localPosition;
+            for (float j = 1; j > 0; j-=0.2f)
+            {
+                build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i].transform.localPosition = ori * j;
+                yield return new WaitForEndOfFrame();
+            }
+            build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i].transform.localPosition = Vector3.zero;
+            remaincard.Add(build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i]);
+            build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard.Remove(build.GetComponent<Builddeck>().target.GetComponent<Havecard>().remaincard[i]);
+        }        
     }
     public void Dragon()
     {

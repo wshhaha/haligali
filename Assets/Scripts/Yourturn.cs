@@ -25,6 +25,10 @@ public class Yourturn : MonoBehaviour
         starttime += Time.deltaTime;     
 		if(counter.GetComponent<Fruitcounter>().endround == true&&GetComponent<Havecard>().remaincard.Count==0)
         {
+            if (counter.GetComponent<Fruitcounter>().roundwinner == gameObject.name)
+            {
+                return;
+            }
             lose = true;
         }
         if (turn == true && lose == true)

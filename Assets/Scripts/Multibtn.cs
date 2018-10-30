@@ -51,10 +51,6 @@ public class Multibtn : MonoBehaviour
         {            
             pp4.GetComponent<UISprite>().spriteName = "Button_36";
         }
-    }
-    public void Setitem()
-    {
-        tem = !tem;
         if (tem == true)
         {
             PlayerPrefs.SetInt("item", 1);
@@ -63,6 +59,10 @@ public class Multibtn : MonoBehaviour
         {
             PlayerPrefs.SetInt("item", 0);
         }
+    }
+    public void Setitem()
+    {
+        tem = !tem;        
     }
     public void Setplayer(GameObject p)
     {

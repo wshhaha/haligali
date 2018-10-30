@@ -15,6 +15,7 @@ public class Ringbell : MonoBehaviour
     public AudioClip bellsound;
     public int pncnt;
     public int lpcnt;
+    public bool wait;
 
     void Start()
     {
@@ -50,33 +51,54 @@ public class Ringbell : MonoBehaviour
         p.Add(p3);
         p.Add(p4);
     }
-    void Giveother(int num)
-    {
-        if (p[(num + 1)].GetComponent<Yourturn>().lose == false)
-        {
-            GetComponent<Havecard>().remaincard[0].transform.parent = p[(num + 1)].transform;
-            GetComponent<Havecard>().remaincard[0].transform.localPosition = Vector3.zero;
-            GetComponent<Havecard>().remaincard[0].transform.localRotation = Quaternion.Euler(0, 0, 0);
-            p[(num + 1)].GetComponent<Havecard>().remaincard.Add(GetComponent<Havecard>().remaincard[0]);
-            GetComponent<Havecard>().remaincard.Remove(GetComponent<Havecard>().remaincard[0]);
-            pncnt++;
-        }
-    }
-    void Penelity(int num, int need)
+    
+    IEnumerator Penelity(int num, int need)
     {
         if (counter.GetComponent<Fruitcounter>().opencard.Count == 0)
         {
-            return;
+            yield break;
         }
         pncnt = 0;
         for (int i = 0; i < 3; i++)
         {
-            Giveother(i + num);
-            if (pncnt == need)
-            {                
-                break;
+            if (GetComponent<Havecard>().remaincard.Count == 0)
+            {
+                yield break;
             }
-        }                
+            if (p[(num + 1 + i)].GetComponent<Yourturn>().lose == false)
+            {
+                GetComponent<Havecard>().remaincard[0].transform.parent = p[(num + 1 + i)].transform;
+                print(p[(num + 1 + i)].gameObject.name);
+                Vector3 ori = GetComponent<Havecard>().remaincard[0].transform.localPosition;
+                Vector3 adj = - GetComponent<Havecard>().remaincard[0].transform.position + p[(num + 1 + i)].transform.position;
+                for (float j = 0; j < 1; j += 0.2f)
+                {
+                    GetComponent<Havecard>().remaincard[0].transform.Translate(adj/5, Space.World);
+                    yield return new WaitForEndOfFrame();
+                }
+                GetComponent<Havecard>().remaincard[0].transform.localPosition = Vector3.zero;
+                GetComponent<Havecard>().remaincard[0].transform.localRotation = Quaternion.Euler(0, 0, 0);
+                p[((num + 1 + i))].GetComponent<Havecard>().remaincard.Add(GetComponent<Havecard>().remaincard[0]);
+                GetComponent<Havecard>().remaincard.Remove(GetComponent<Havecard>().remaincard[0]);
+                pncnt++;
+            }
+            if (pncnt == need)
+            {
+                wait = false;
+                yield break;
+            }
+        }        
+    }
+    
+    IEnumerator Takemove(GameObject obj)
+    {
+        Vector3 ori = obj.transform.localPosition;
+        for (float i = 1; i > 0; i -= 0.2f)
+        {
+            obj.transform.localPosition = ori * i;
+            yield return new WaitForEndOfFrame();
+        }
+        obj.transform.localPosition = Vector3.zero;
     }
     public void Takecard()
     {
@@ -85,7 +107,7 @@ public class Ringbell : MonoBehaviour
             item.transform.parent = transform;
             item.GetComponent<UIPanel>().depth = 0;
             GetComponent<Havecard>().remaincard.Add(item);
-            item.transform.localPosition = Vector3.zero;
+            StartCoroutine("Takemove", item);
             item.transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
         counter.GetComponent<Fruitcounter>().opencard.Clear();
@@ -119,6 +141,11 @@ public class Ringbell : MonoBehaviour
         {
             return;
         }
+        if (wait == true)
+        {
+            return;
+        }
+        wait = true;
         Effectsound.instance().Sfxplay(bellsound);
         if (counter.GetComponent<Fruitcounter>().canwin == true)
         {
@@ -148,20 +175,21 @@ public class Ringbell : MonoBehaviour
                 return;
             }
             if (GetComponent<Havecard>().remaincard.Count <= 2)
-            {                
+            {
+                Liveplayer();
                 switch (gameObject.name)
                 {
                     case "1P":
-                        Penelity(0, GetComponent<Havecard>().remaincard.Count);
+                        StartCoroutine(Penelity(0, lpcnt - 1));
                         break;
                     case "2P":
-                        Penelity(1, GetComponent<Havecard>().remaincard.Count);
+                        StartCoroutine(Penelity(1, lpcnt - 1));
                         break;
                     case "3P":
-                        Penelity(2, GetComponent<Havecard>().remaincard.Count);
+                        StartCoroutine(Penelity(2, lpcnt - 1));
                         break;
                     case "4P":
-                        Penelity(3, GetComponent<Havecard>().remaincard.Count);
+                        StartCoroutine(Penelity(3, lpcnt - 1));
                         break;
                 }
             }
@@ -171,16 +199,16 @@ public class Ringbell : MonoBehaviour
                 switch (gameObject.name)
                 {
                     case "1P":
-                        Penelity(0, lpcnt - 1);
+                        StartCoroutine(Penelity(0, lpcnt - 1));
                         break;
                     case "2P":
-                        Penelity(1, lpcnt - 1);
+                        StartCoroutine(Penelity(1, lpcnt - 1));
                         break;
                     case "3P":
-                        Penelity(2, lpcnt - 1);
+                        StartCoroutine(Penelity(2, lpcnt - 1));
                         break;
                     case "4P":
-                        Penelity(3, lpcnt - 1);
+                        StartCoroutine(Penelity(3, lpcnt - 1));
                         break;
                 }
             }

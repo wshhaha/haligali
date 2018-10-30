@@ -149,9 +149,9 @@ public class Fruitcounter : MonoBehaviour
     public void Nextround()
     {
         Effectsound.instance().Sfxplay(nextrsound);
-        Winnergetcard(roundwinner);
-        endround = false;
+        Winnergetcard(roundwinner);        
         blind.SetActive(false);
+        endround = false;
         canwin = false;
         for (int i = 1; i < 4; i++)
         {
