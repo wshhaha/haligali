@@ -17,10 +17,18 @@ public class Lockbtn : MonoBehaviour
         if (player.GetComponent<Yourturn>().lose == true)
         {
             GetComponent<UISprite>().spriteName = lose;
+            if (gameObject.name == "Reverse")
+            {
+                GetComponentInChildren<UILabel>().text = "";
+            }
         }
         else
         {
             GetComponent<UISprite>().spriteName = ori;
+            if (gameObject.name == "Reverse")
+            {
+                GetComponentInChildren<UILabel>().text = "REVERSE";
+            }
         }
 	}
 }

@@ -55,7 +55,7 @@ public class Ringbell : MonoBehaviour
     IEnumerator Penelity(int num, int need)
     {
         if (counter.GetComponent<Fruitcounter>().opencard.Count == 0)
-        {
+        {            
             yield break;
         }
         pncnt = 0;
@@ -63,6 +63,7 @@ public class Ringbell : MonoBehaviour
         {
             if (GetComponent<Havecard>().remaincard.Count == 0)
             {
+                wait = false;
                 yield break;
             }
             if (p[(num + 1 + i)].GetComponent<Yourturn>().lose == false)
@@ -71,7 +72,7 @@ public class Ringbell : MonoBehaviour
                 print(p[(num + 1 + i)].gameObject.name);
                 Vector3 ori = GetComponent<Havecard>().remaincard[0].transform.localPosition;
                 Vector3 adj = - GetComponent<Havecard>().remaincard[0].transform.position + p[(num + 1 + i)].transform.position;
-                for (float j = 0; j < 1; j += 0.2f)
+                for (float j = 0; j < 1; j += 0.3f)
                 {
                     GetComponent<Havecard>().remaincard[0].transform.Translate(adj/5, Space.World);
                     yield return new WaitForEndOfFrame();
@@ -173,6 +174,7 @@ public class Ringbell : MonoBehaviour
         {
             if (GetComponent<Havecard>().remaincard.Count == 0)
             {
+                wait = false;
                 return;
             }
             if (GetComponent<Havecard>().remaincard.Count <= 2)
@@ -212,7 +214,7 @@ public class Ringbell : MonoBehaviour
                         StartCoroutine(Penelity(3, lpcnt - 1));
                         break;
                 }
-            }
+            }            
         }
     }
 }

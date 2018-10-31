@@ -36,8 +36,7 @@ public class Yourturn : MonoBehaviour
             Skipturn();
         }
         if (GetComponent<Havecard>().remaincard.Count == 0 && starttime > 3)
-        {
-            print("1");
+        {            
             if (build.GetComponent<Builddeck>().suffle == true)
             {
                 return;
