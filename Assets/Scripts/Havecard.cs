@@ -147,22 +147,22 @@ public class Havecard : MonoBehaviour
         }
         else
         {
-            Application.LoadLevel(1);
+            Adsmanager.instance().ShowRewardedAd();            
         }
     }
     public void Retry()
     {
-        Application.LoadLevel(1);
+        Adsmanager.instance().ShowRewardedAd();        
     }
     public void Returntotitlewin()
     {
         int i = PlayerPrefs.GetInt("unlock");
         i++;
-        PlayerPrefs.SetInt("unlock", i);
+        PlayerPrefs.SetInt("unlock", i);        
         Application.LoadLevel(0);        
     }
     public void Returntotitlelose()
-    {
+    {        
         Application.LoadLevel(0);
     }
     public void Endgame(bool tf)

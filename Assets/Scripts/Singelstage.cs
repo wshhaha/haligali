@@ -14,8 +14,7 @@ public class Singelstage : MonoBehaviour
 	}	
 	
     public void Nextstageset()
-    {
-        
+    {        
         if (stagenum == (unlocknum+1))
         {
             unlocknum++;
@@ -31,7 +30,7 @@ public class Singelstage : MonoBehaviour
         }
         Stagebtninfo.instance().Setuispeed(stagenum);
         PlayerPrefs.SetString("stage", "STAGE\n"+stagenum);
-        PlayerPrefs.SetInt("unlock", unlocknum);        
-        Application.LoadLevel(1);
+        PlayerPrefs.SetInt("unlock", unlocknum);
+        Adsmanager.instance().ShowRewardedAd();        
     }
 }

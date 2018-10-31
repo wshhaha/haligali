@@ -29,7 +29,7 @@ public class Pausebtn : MonoBehaviour
     public void Restart()
     {
         Effectsound.instance().Sfxplay(btnsound);
-        Application.LoadLevel(1);
+        Adsmanager.instance().ShowRewardedAd();        
     }
     public void Exit()
     {
